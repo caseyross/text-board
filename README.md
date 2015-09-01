@@ -1,1 +1,1 @@
-Live demo at (text-board.meteor.com)
+Demo at http://text-board.meteor.com
