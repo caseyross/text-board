@@ -1,31 +1,11 @@
 Threads = new Mongo.Collection 'threads'
 Posts = new Mongo.Collection 'posts'
 
+# TODO: Figure out why this stuff doesn't work when separated and put in client files
 if Meteor.isClient
-  
-  Session.setDefault 'tselected', false
-  Session.setDefault 'tid', undefined
-  Session.setDefault 'addthread', false
-  
-  Template.body.helpers
-    tselected: -> Session.get 'tselected'
-    addthread: -> Session.get 'addthread'
-    
-  Template.body.events
-    'click .back': ->
-      Session.set 'tselected', false
-      Session.set 'tid', undefined
-      Session.set 'addthread', false
     
   Template.catalog.helpers
     threads: -> Threads.find()
-    
-  Template.catalog.events
-    'click li': (event) ->
-      Session.set 'tselected', true
-      Session.set 'tid', event.target.id
-    'click .new': (event) ->
-      Session.set 'addthread', true
   
   Template.thread.helpers
     posts: -> Posts.find(_tid: Session.get 'tid')
@@ -55,7 +35,3 @@ if Meteor.isClient
           _tid: Session.get 'tid'
           content: content
         event.target.content.value = ""
-  
-if Meteor.isServer
-  Meteor.startup
-  
