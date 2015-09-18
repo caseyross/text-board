@@ -10,3 +10,4 @@ coffeescript
 stylus
 mquandalle:jade
 autopublish
+momentjs:moment

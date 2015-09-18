@@ -1,5 +1,5 @@
 Threads = new Mongo.Collection 'threads'
-Posts = new Mongo.Collection 'posts'
+Posts = new Mongo.Collection 'posts' # Need to model these as part of Thread documents to ensure atomic thread updates?
 
 # TODO: Figure out why this stuff doesn't work when separated and put in client files
 if Meteor.isClient
@@ -25,7 +25,7 @@ if Meteor.isClient
           Session.set 'addthread', false
           Session.set 'tselected', true
           Session.set 'tid', tid
-          
+  
   Template.newpost.events
     'submit form': (event) ->
       event.preventDefault()
@@ -34,4 +34,6 @@ if Meteor.isClient
         Posts.insert
           _tid: Session.get 'tid'
           content: content
+          timestamp: +moment()
+          replies: []
         event.target.content.value = ""
