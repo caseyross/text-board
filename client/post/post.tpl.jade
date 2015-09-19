@@ -1,4 +1,6 @@
 .postContainer
-    .postNumber #{postNumber}
+    .postNumber #{number}
     .postBody #{content}
-    .postInfo #{timestamp}
+    .postInfo
+        .postTime #{prettyTimestamp}
+        .postReplies #{prettyReplies}
