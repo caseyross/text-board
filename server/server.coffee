@@ -5,23 +5,26 @@ Meteor.publish 'threads', -> Threads.find()
 Meteor.publish 'posts', (tid) -> Posts.find(_tid: tid)
 
 Meteor.methods
+
   postThread: (name, content) ->
     name = name.trim()
-    if name.length > 0
-      content = content.trim()
-      if content.length > 0
-        tid = Threads.insert
-          name: name
-          postCount: 1
-          timestamp: +moment()
-        Posts.insert
-          _tid: tid
-          number: 1
-          content: content
-          timestamp: +moment()
-          replies: []
-          replyIds: []
-    return tid
+    content = content.trim()
+    if name.length > 0 and content.length > 0
+      tid = Threads.insert
+        name: name
+        postCount: 1
+        timestamp: +moment()
+      Posts.insert
+        _tid: tid
+        number: 1
+        content: content
+        timestamp: +moment()
+        replies: []
+        replyIds: []
+      return tid
+    else
+      throw new Meteor.Error 'blank-field', 'One or more required fields in the form is blank'
+
   postReply: (tid, content) ->
     content = content.trim()
     if content.length > 0
@@ -50,6 +53,7 @@ Meteor.methods
         repliedTo = repliedTo.filter (x) -> 0 < x < number
         repliedTo = _.uniq(repliedTo)
         Meteor.call('insertReplies', tid, number, repliedTo, id)
+
   insertReplies: (tid, number, repliedTo, id) ->
     for numberRepliedTo in repliedTo
       Posts.update( {_tid: tid, number: numberRepliedTo}, {$push: {replies: number}} )
