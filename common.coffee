@@ -4,8 +4,10 @@ Posts = new Mongo.Collection 'posts'
 if Meteor.isClient
   
   Meteor.subscribe 'threads'
-  # TODO: only subscribe to posts in currently viewed threads
-  Meteor.subscribe 'posts'
+  # Autosubscribe to each thread's posts when user opens it
+  # Might be worth sub'ing to all posts for speed
+  Tracker.autorun ->
+    Meteor.subscribe 'posts', Session.get 'tid'
     
   Template.catalog.helpers
     threads: -> Threads.find()
@@ -33,7 +35,7 @@ if Meteor.isClient
 if Meteor.isServer
   
   Meteor.publish 'threads', -> Threads.find()
-  Meteor.publish 'posts', -> Posts.find()
+  Meteor.publish 'posts', (tid) -> Posts.find(_tid: tid)
   
   Meteor.methods
     postThread: (name, content) ->
