@@ -2,6 +2,10 @@ Threads = new Mongo.Collection 'threads'
 Posts = new Mongo.Collection 'posts'
 
 if Meteor.isClient
+  
+  Meteor.subscribe 'threads'
+  # TODO: only subscribe to posts in currently viewed threads
+  Meteor.subscribe 'posts'
     
   Template.catalog.helpers
     threads: -> Threads.find()
@@ -27,6 +31,10 @@ if Meteor.isClient
       event.target.content.value = ""
         
 if Meteor.isServer
+  
+  Meteor.publish 'threads', -> Threads.find()
+  Meteor.publish 'posts', -> Posts.find()
+  
   Meteor.methods
     postThread: (name, content) ->
       name = name.trim()
