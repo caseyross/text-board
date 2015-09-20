@@ -12,9 +12,26 @@ if Meteor.isClient
   Template.newthread.events
     'submit form': (event) ->
       event.preventDefault()
-      name = event.target.name.value.trim()
+      name = event.target.name.value
+      content = event.target.content.value
+      Meteor.call 'postThread', name, content, (error, result) -> if result then Session.set 'tid', result
+      Session.set 'addthread', false
+      Session.set 'tselected', true
+  
+  Template.newpost.events
+    'submit form': (event) ->
+      event.preventDefault()
+      content = event.target.content.value
+      tid = Session.get 'tid'
+      Meteor.call('postReply', tid, content)
+      event.target.content.value = ""
+        
+if Meteor.isServer
+  Meteor.methods
+    postThread: (name, content) ->
+      name = name.trim()
       if name.length > 0
-        content = event.target.content.value.trim()
+        content = content.trim()
         if content.length > 0
           tid = Threads.insert
             name: name
@@ -27,17 +44,11 @@ if Meteor.isClient
             timestamp: +moment()
             replies: []
             replyIds: []
-          Session.set 'addthread', false
-          Session.set 'tselected', true
-          Session.set 'tid', tid
-  
-  Template.newpost.events
-    'submit form': (event) ->
-      event.preventDefault()
-      content = event.target.content.value.trim()
+      return tid
+    postReply: (tid, content) ->
+      content = content.trim()
       if content.length > 0
         # Increase post count
-        tid = Session.get 'tid'
         thread = Threads.findAndModify
           query:
             _id: tid
@@ -62,10 +73,6 @@ if Meteor.isClient
           repliedTo = repliedTo.filter (x) -> 0 < x < number
           repliedTo = _.uniq(repliedTo)
           Meteor.call('insertReplies', tid, number, repliedTo, id)
-        event.target.content.value = ""
-        
-if Meteor.isServer
-  Meteor.methods
     insertReplies: (tid, number, repliedTo, id) ->
       for numberRepliedTo in repliedTo
         Posts.update( {_tid: tid, number: numberRepliedTo}, {$push: {replies: number}} )
