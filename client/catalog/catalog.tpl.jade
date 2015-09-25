@@ -1,4 +1,6 @@
-p.new + add new
+p
+    a(href='/new') + add new
 ol
     each threads
-        li(id='#{_id}') #{name}
+        li
+            a(href='/#{_id}') #{name}

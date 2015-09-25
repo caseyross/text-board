@@ -1,9 +1,3 @@
-Threads = new Mongo.Collection 'threads'
-Posts = new Mongo.Collection 'posts'
-
-Meteor.publish 'threads', -> Threads.find()
-Meteor.publish 'posts', (tid) -> Posts.find(_tid: tid)
-
 Meteor.methods
 
   postThread: (name, content) ->
