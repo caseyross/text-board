@@ -23,7 +23,7 @@ Meteor.methods
         replyIds: []
       return tid
     else
-      throw new Meteor.Error 'blank-field', 'One or more required fields in the form is blank'
+      throw new Meteor.Error 'incomplete-form', 'One or more required fields in this form is blank'
 
   postReply: (tid, content) ->
     content = content.trim()
@@ -48,12 +48,13 @@ Meteor.methods
         timestamp: +moment()
         replies: []
         replyIds: []
+      # Insert replies
       if repliedTo?
-        repliedTo = repliedTo.map (x) -> parseInt(x.slice(2), 10)
-        repliedTo = repliedTo.filter (x) -> 0 < x < number
-        repliedTo = _.uniq(repliedTo)
         Meteor.call('insertReplies', tid, number, repliedTo, id)
 
   insertReplies: (tid, number, repliedTo, id) ->
+    repliedTo = repliedTo.map (x) -> parseInt(x.slice(2), 10)
+    repliedTo = repliedTo.filter (x) -> 0 < x < number
+    repliedTo = _.uniq(repliedTo)
     for numberRepliedTo in repliedTo
       Posts.update( {_tid: tid, number: numberRepliedTo}, {$push: {replies: number}} )

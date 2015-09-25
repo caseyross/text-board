@@ -10,7 +10,8 @@ Meteor.subscribe 'threads'
 # Might be worth sub'ing to all posts for speed
 Tracker.autorun ->
   Meteor.subscribe 'posts', Session.get 'tid'
-    
+
+# TODO: Figure out why these helpers don't work when placed in the appropriate files
 Template.catalog.helpers
   threads: -> Threads.find()
 

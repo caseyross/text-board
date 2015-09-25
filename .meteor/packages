@@ -11,3 +11,4 @@ mquandalle:jade
 momentjs:moment
 fongandrew:find-and-modify
 stevezhu:lodash
+iron:router
