@@ -1,8 +1,8 @@
 Template.newthread.events
   'submit form': (event) ->
     event.preventDefault()
-    name = event.target.name.value
-    content = event.target.content.value
-    Meteor.call 'postThread', name, content, (error, result) ->
+    title = event.target.title.value
+    firstPost = event.target.firstPost.value
+    Meteor.call 'postThread', title, firstPost, (error, result) ->
       if result
         FlowRouter.go('/#{result}')
