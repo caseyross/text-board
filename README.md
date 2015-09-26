@@ -2,13 +2,13 @@ IMPLEMENTATION STATUS:
 
 - Posting: Basic functionality
 - Replies: Basic functionality
-- Thread creation: Working
+- Thread creation: Ugly but working
 - Catalog: Ugly but working
 - Navigation: Basic functionality
-- Security: Lacking
+- Security: Somewhat
 - Styling: Lacking
-- Quoting: No
-- Reply linking/highlighting: No
+- Quoting: Yes
+- Reply linking/highlighting: Mostly
 - Post editing: No
 - IDs: No
 - Other things: No
