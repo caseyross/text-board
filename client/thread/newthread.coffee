@@ -5,4 +5,4 @@ Template.newthread.events
     content = event.target.content.value
     Meteor.call 'postThread', name, content, (error, result) ->
       if result
-        Router.go('/#{result}')
+        FlowRouter.go('/#{result}')

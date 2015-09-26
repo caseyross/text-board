@@ -1,9 +1,11 @@
-Router.route '/', ->
-    this.render 'catalog'
+FlowRouter.route '/',
+    action: ->
+        BlazeLayout.render 'catalog'
     
-Router.route '/:_id', ->
-    posts = Posts.find(_tid: this.params._id)
-    this.render 'thread'
+FlowRouter.route '/:_id',
+    action: ->
+        BlazeLayout.render 'thread'
     
-Router.route '/new', ->
-    this.render 'newthread'
+FlowRouter.route '/new',
+    action: ->
+        BlazeLayout.render 'newthread'

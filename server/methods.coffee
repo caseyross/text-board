@@ -17,7 +17,7 @@ Meteor.methods
         replyIds: []
       return tid
     else
-      throw new Meteor.Error 'incomplete-form', 'One or more required fields in this form is blank'
+      throw new Meteor.Error 'incomplete-form'
 
   postReply: (tid, content) ->
     content = content.trim()
@@ -42,11 +42,13 @@ Meteor.methods
         timestamp: +moment()
         replies: []
         replyIds: []
-      # Insert replies
+      # Insert backlinks
       if repliedTo?
-        Meteor.call('insertReplies', tid, number, repliedTo, id)
+        Meteor.call('insertBacklinks', tid, number, repliedTo, id)
+    else
+      throw new Meteor.Error 'incomplete-form'
 
-  insertReplies: (tid, number, repliedTo, id) ->
+  insertBacklinks: (tid, number, repliedTo, id) ->
     repliedTo = repliedTo.map (x) -> parseInt(x.slice(2), 10)
     repliedTo = repliedTo.filter (x) -> 0 < x < number
     repliedTo = _.uniq(repliedTo)
