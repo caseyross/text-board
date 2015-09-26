@@ -1,4 +1,10 @@
 Template.post.helpers
+    numberAttrs: ->
+        'class':
+            switch
+                when this.number < 10 then 'numberLg'
+                when this.number < 100 then 'numberMd'
+                else 'numberSm'
     prettyContent: ->
         # Escape post content, then inject our HTML for unescaped rendering
         safeContent = _.escape(this.content)

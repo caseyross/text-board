@@ -1,5 +1,7 @@
 .postContainer(id='p#{number}')
-    .postNumber #{number}
+    .postNumber 
+        .postReplyBtn
+            div($dyn=numberAttrs) #{number}
     .postBody !{prettyContent}
     .postInfo
         .postTime #{prettyTimestamp}
