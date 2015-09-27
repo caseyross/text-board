@@ -3,6 +3,7 @@ Template.thread.helpers
     
 Template.thread.events
     'click .postReplyBtn': (event) ->
+        document.getElementById('postInput').focus()
         replyLink = '>>'
         replyLink += this.number
         replyLink += '\n'
