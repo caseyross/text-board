@@ -3,8 +3,10 @@ Template.thread.helpers
     
 Template.thread.events
     'click .postReplyBtn': (event) ->
+        replyLink = '>>'
+        replyLink += this.number
+        replyLink += '\n'
         input = Session.get 'postInput'
-        input += '>>'
-        input += this.number
-        input += '\n'
+        cursorPos = Session.get 'postInputCursorPos'
+        input = input[0...cursorPos] + replyLink + input[cursorPos..]
         Session.set 'postInput', input
