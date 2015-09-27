@@ -22,7 +22,9 @@ Template.post.helpers
     prettyReplies: ->
         result = ''
         for reply in this.replies
-            result += '>>'
+            result += "<a href='#p"
             result += reply
-            result += ' '
+            result += "'>>>"
+            result += reply
+            result += '</a> '
         return result
