@@ -11,3 +11,5 @@ Template.thread.events
         cursorPos = Session.get 'postInputCursorPos'
         input = input[0...cursorPos] + replyLink + input[cursorPos..]
         Session.set 'postInput', input
+        newCursorPos = cursorPos + replyLink.length
+        Session.set 'postInputCursorPos', newCursorPos
