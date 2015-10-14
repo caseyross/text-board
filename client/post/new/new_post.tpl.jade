@@ -1,6 +1,14 @@
-.post-container
-    .post-header
-    .post-body
-        form
-            textarea.post-input#postInput(name='content') #{postInput}
-            input.post-submit-btn(type='submit' value='post')
+.new_post-panel#newPostPanel
+    .post-container
+        .post-header
+        .post-body
+            form
+                textarea.post-input#postInput(name='content') #{postInput}
+                input.post-submit-btn(type='submit' value='post')
+        button.cancel-floating-btn.hidden#cancelFloatingBtn X
+.new_post-panel.hidden#newPostPanelSpacer
+    .post-container
+        .post-body
+            form
+                textarea.post-input
+                input.post-submit-btn

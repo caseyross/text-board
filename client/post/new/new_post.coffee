@@ -17,6 +17,7 @@ Template.new_post.events
     content = event.target.content.value
     Meteor.call 'postReply', FlowRouter.getParam('_id'), content, (error, result) ->
       if result
+        toggleFloatPanel off
         Session.set 'postInput', ''
       else
         console.log error
