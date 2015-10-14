@@ -21,9 +21,9 @@ Template.thread.events
 @toggleFloatPanel = (status) ->
     if status
         document.getElementById('newPostPanel').classList.add 'floating'
-        document.getElementById('newPostPanelSpacer').classList.remove 'hidden'
-        document.getElementById('cancelFloatingBtn').classList.remove 'hidden'
+        document.getElementById('newPostPanelSpacer').classList.remove 'absent'
+        document.getElementById('cancelFloatingBtn').classList.remove 'absent'
     else
         document.getElementById('newPostPanel').classList.remove 'floating'
-        document.getElementById('newPostPanelSpacer').classList.add 'hidden'
-        document.getElementById('cancelFloatingBtn').classList.add 'hidden'
+        document.getElementById('newPostPanelSpacer').classList.add 'absent'
+        document.getElementById('cancelFloatingBtn').classList.add 'absent'
