@@ -1,11 +1,11 @@
 Session.setDefault 'postInput', ''
 Session.setDefault 'postInputCursorPos', 0
 
-Template.newpost.helpers
+Template.new_post.helpers
   postInput: ->
     Session.get 'postInput'
 
-Template.newpost.events
+Template.new_post.events
   'input textarea': (event) ->
     content = event.target.value
     Session.set 'postInput', content

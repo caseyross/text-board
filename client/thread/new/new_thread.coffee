@@ -1,4 +1,4 @@
-Template.newthread.events
+Template.new_thread.events
   'submit form': (event) ->
     event.preventDefault()
     title = event.target.title.value
