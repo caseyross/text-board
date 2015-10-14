@@ -2,7 +2,7 @@ FlowRouter.route '/',
     action: ->
         BlazeLayout.render 'catalog'
     
-FlowRouter.route '/thread/:_id',
+FlowRouter.route '/t/:_id',
     action: ->
         BlazeLayout.render 'thread'
     
