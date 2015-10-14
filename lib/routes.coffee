@@ -8,4 +8,4 @@ FlowRouter.route '/thread/:_id',
     
 FlowRouter.route '/new',
     action: ->
-        BlazeLayout.render 'newthread'
+        BlazeLayout.render 'new_thread'

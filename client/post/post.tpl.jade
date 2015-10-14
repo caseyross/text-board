@@ -1,8 +1,8 @@
-.postContainer(id='p#{number}')
-    .postNumber 
-        .postReplyBtn
+.post-container(id='p#{number}')
+    .post-header
+        .post-reply-btn
             div($dyn=numberAttrs) #{number}
-    .postBody !{prettyContent}
-    .postInfo
-        .postTime #{prettyTimestamp}
-        .postReplies !{prettyReplies}
+    .post-body !{prettyContent}
+    .post-meta
+        .post-time #{prettyTimestamp}
+        .post-replies !{prettyReplies}
