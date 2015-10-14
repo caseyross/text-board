@@ -2,7 +2,7 @@ Template.thread.helpers
     posts: -> Posts.find(_tid: FlowRouter.getParam '_id' )
     
 Template.thread.events
-    'click .postReplyBtn': (event) ->
+    'click .post-reply-btn': (event) ->
         document.getElementById('postInput').focus()
         replyLink = '>>'
         replyLink += this.number

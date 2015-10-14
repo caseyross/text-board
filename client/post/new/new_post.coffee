@@ -19,6 +19,3 @@ Template.newpost.events
       if result
         Session.set 'postInput', ''
     event.target.content.value = ""
-  # TODO: Figure out why this is not detected
-  'popstate': (event) ->
-    Session.set 'postInput', ''

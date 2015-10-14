@@ -1,2 +1,2 @@
 Template.catalog.helpers
-  threads: -> Threads.find()
+    threads: -> Threads.find()

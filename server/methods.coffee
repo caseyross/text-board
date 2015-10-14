@@ -42,13 +42,13 @@ Meteor.methods
         timestamp: +moment()
         replies: []
         replyIds: []
-      # Insert backlinks
+      # Insert links to new post
       if repliedTo?
-        Meteor.call('insertBacklinks', tid, number, repliedTo, id)
+        Meteor.call('insertForelinks', tid, number, repliedTo, id)
     else
       throw new Meteor.Error 'incomplete-form'
 
-  insertBacklinks: (tid, number, repliedTo, id) ->
+  insertForelinks: (tid, number, repliedTo, id) ->
     repliedTo = repliedTo.map (x) -> parseInt(x.slice(2), 10)
     repliedTo = repliedTo.filter (x) -> 0 < x < number
     repliedTo = _.uniq(repliedTo)
