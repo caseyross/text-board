@@ -1,6 +1,6 @@
-p
+.thread-container
     a(href='/new') + add new
-ol
-    each threads
-        li
-            a(href='/t/#{_id}') #{name}
+nav.thread-list
+        each threads
+            .thread-container
+                a(href='/t/#{_id}') #{name}

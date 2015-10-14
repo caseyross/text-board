@@ -5,5 +5,5 @@ Template.newthread.events
     firstPost = event.target.firstPost.value
     Meteor.call 'postThread', title, firstPost, (error, result) ->
       if result
-        newPath = '/thread/' + result
+        newPath = '/t/' + result
         FlowRouter.go(newPath)
