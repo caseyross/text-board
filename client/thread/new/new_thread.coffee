@@ -7,3 +7,6 @@ Template.new_thread.events
       if result
         newPath = '/t/' + result
         FlowRouter.go(newPath)
+      else
+        console.log error
+        # TODO: tell users about error

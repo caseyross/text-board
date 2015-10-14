@@ -45,6 +45,7 @@ Meteor.methods
       # Insert links to new post
       if repliedTo?
         Meteor.call('insertForelinks', tid, number, repliedTo, id)
+      return true
     else
       throw new Meteor.Error 'incomplete-form'
 

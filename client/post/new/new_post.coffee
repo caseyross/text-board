@@ -18,4 +18,7 @@ Template.new_post.events
     Meteor.call 'postReply', FlowRouter.getParam('_id'), content, (error, result) ->
       if result
         Session.set 'postInput', ''
+      else
+        console.log error
+        # TODO: tell users about error
     event.target.content.value = ""
