@@ -3,7 +3,9 @@ Template.thread.helpers
     
 Template.thread.events
     'click .post-reply-btn': (event) ->
-        toggleFloatPanel on
+        newPostPanelBottom = document.getElementById('newPostPanel').getBoundingClientRect().bottom
+        if newPostPanelBottom > window.innerHeight
+            toggleFloatPanel on
         document.getElementById('postInput').focus()
         replyLink = '>>'
         replyLink += this.number
@@ -21,9 +23,11 @@ Template.thread.events
 @toggleFloatPanel = (status) ->
     if status
         document.getElementById('newPostPanel').classList.add 'floating'
+        document.getElementById('newPostPanelSpacer').classList.add 'invisible'
         document.getElementById('newPostPanelSpacer').classList.remove 'absent'
         document.getElementById('cancelFloatingBtn').classList.remove 'absent'
     else
         document.getElementById('newPostPanel').classList.remove 'floating'
         document.getElementById('newPostPanelSpacer').classList.add 'absent'
+        document.getElementById('newPostPanelSpacer').classList.remove 'invisible'
         document.getElementById('cancelFloatingBtn').classList.add 'absent'
