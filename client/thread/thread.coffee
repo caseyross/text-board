@@ -3,10 +3,13 @@ Template.thread.helpers
     
 Template.thread.events
     'click .post-reply-btn': (event) ->
+        # Show post input if it's not already visible
         newPostPanelBottom = document.getElementById('newPostPanel').getBoundingClientRect().bottom
         if newPostPanelBottom > window.innerHeight
             toggleFloatPanel on
         document.getElementById('postInput').focus()
+        # Insert markup for a reply
+        # Save reply content and cursor position in session storage
         replyLink = '>>'
         replyLink += this.number
         replyLink += '\n'

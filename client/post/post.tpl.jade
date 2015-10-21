@@ -1,10 +1,9 @@
-.post-container(id='p#{number}')
+.post-container(id='#{number}')
     .post-header
         button.post-reply-btn
-            .front
-                span($dyn=numberAttrs) #{number}
+            .front #{number}
             .back reply
     .post-body !{prettyContent}
     .post-meta
         .post-time #{prettyTimestamp}
-        .post-replies !{prettyReplies}
+        .post-forelinks !{prettyForelinks}
