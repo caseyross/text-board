@@ -1,35 +1,29 @@
 .post-container
-    width 880px
+    width 896px
     margin 0 auto
     
     .post-header
-        width 64px
-        height 64px
+        width 80px
+        height 80px
         display inline-block
         vertical-align top
+            
+        .reply-hint
+            display inline-block
+            font-size 1.2rem
+            color gray
         
         .post-reply-btn
-            margin 16px 32px
+            margin 16px 0
             border 1px solid
             border-radius 4px
             color gray
             background-color white
+            cursor pointer
             
             &:hover
             &:focus
-                width 64px
-                margin-left 0
-                color white
-                background-color gray
-                
-                .front
-                    display none
-                
-                .back
-                    display inline
-            
-            .back
-                display none
+                color black
     
     .post-body
         width 640px

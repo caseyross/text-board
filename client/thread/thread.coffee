@@ -2,6 +2,14 @@ Template.thread.helpers
     posts: -> Posts.find(_tid: FlowRouter.getParam '_id' )
     
 Template.thread.events
+    'focus .post-reply-btn': (event) ->
+        toggleReplyHint on, @number
+    'blur .post-reply-btn': (event) ->
+        toggleReplyHint off, @number
+    'mouseover .post-reply-btn': (event) ->
+        toggleReplyHint on, @number
+    'mouseout .post-reply-btn': (event) ->
+        toggleReplyHint off, @number
     'click .post-reply-btn': (event) ->
         # Show post input if it's not already visible
         newPostPanelBottom = document.getElementById('newPostPanel').getBoundingClientRect().bottom
@@ -11,7 +19,7 @@ Template.thread.events
         # Insert markup for a reply
         # Save reply content and cursor position in session storage
         replyLink = '>>'
-        replyLink += this.number
+        replyLink += @number
         replyLink += '\n'
         input = Session.get 'postInput'
         cursorPos = Session.get 'postInputCursorPos'
@@ -22,6 +30,13 @@ Template.thread.events
     'click .cancel-floating-btn': (event) ->
         toggleFloatPanel off
         Session.set 'postInput', ''
+        
+@toggleReplyHint = (status, number) ->
+    if status
+        document.getElementById('rh' + number).classList.remove 'invisible'
+    else
+        document.getElementById('rh' + number).classList.add 'invisible'
+        
         
 @toggleFloatPanel = (status) ->
     if status

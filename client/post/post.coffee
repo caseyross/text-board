@@ -1,13 +1,7 @@
 Template.post.helpers
-    #numberAttrs: ->
-        #'class':
-            #switch
-                #when this.number < 10 then 'post-number-lg'
-                #when this.number < 100 then 'post-number-md'
-                #else 'post-number-sm'
     prettyContent: ->
         # Escape post content, then inject our HTML for unescaped rendering
-        safeContent = _.escape(this.content)
+        safeContent = _.escape(@content)
         replyRegex = new RegExp(/&gt;&gt;\d+/g)
         insertBacklink = (match) ->
             number = match[8..]
@@ -19,10 +13,10 @@ Template.post.helpers
             return result
         return safeContent.replace(replyRegex, insertBacklink)
     prettyTimestamp: ->
-        moment(this.timestamp).fromNow()
+        moment(@timestamp).fromNow()
     prettyForelinks: ->
         result = ''
-        for reply in this.replies
+        for reply in @replies
             result += "<a href='#"
             result += reply
             result += "' class='forelink'>"
