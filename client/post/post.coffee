@@ -4,11 +4,10 @@ Template.post.helpers
         safeContent = _.escape(@content)
         replyRegex = new RegExp(/&gt;&gt;\d+/g)
         insertBacklink = (match) ->
-            number = match[8..]
             result = "<a href='#"
-            result += number
+            result += match[8..]
             result += "' class='backlink'>"
-            result += number
+            result += match
             result += '</a>'
             return result
         return safeContent.replace(replyRegex, insertBacklink)
@@ -19,7 +18,7 @@ Template.post.helpers
         for reply in @replies
             result += "<a href='#"
             result += reply
-            result += "' class='forelink'>"
+            result += "' class='forelink'>>>"
             result += reply
             result += '</a> '
         return result
