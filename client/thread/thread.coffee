@@ -4,10 +4,12 @@ Template.thread.helpers
 Template.thread.events
     'focus .post-reply-btn': (event) ->
         toggleReplyHint on, @number
+        saveSelection()
     'blur .post-reply-btn': (event) ->
         toggleReplyHint off, @number
     'mouseover .post-header': (event) ->
         toggleReplyHint on, @number
+        saveSelection()
     'mouseout .post-header': (event) ->
         toggleReplyHint off, @number
     'click .post-header': (event) ->
@@ -23,14 +25,25 @@ Template.thread.events
         replyLink += '\n'
         input = Session.get 'postInput'
         cursorPos = Session.get 'postInputCursorPos'
-        input = input[0...cursorPos] + replyLink + input[cursorPos..]
+        input = input[0...cursorPos] + replyLink + quotedSelection() + input[cursorPos..]
         Session.set 'postInput', input
         newCursorPos = cursorPos + replyLink.length
         Session.set 'postInputCursorPos', newCursorPos
     'click .cancel-floating-btn': (event) ->
         toggleFloatPanel off
         Session.set 'postInput', ''
-        
+
+@selection = ''
+
+@saveSelection = ->
+    @selection = window.getSelection().toString()
+    
+@quotedSelection = ->
+    if selection
+        return selection.replace(/^/mg, '$&> ')
+    else
+        return ''
+
 @toggleReplyHint = (status, number) ->
     if status
         document.getElementById('rh' + number).classList.remove 'invisible'
