@@ -6,11 +6,11 @@ Template.thread.events
         toggleReplyHint on, @number
     'blur .post-reply-btn': (event) ->
         toggleReplyHint off, @number
-    'mouseover .post-reply-btn': (event) ->
+    'mouseover .post-header': (event) ->
         toggleReplyHint on, @number
-    'mouseout .post-reply-btn': (event) ->
+    'mouseout .post-header': (event) ->
         toggleReplyHint off, @number
-    'click .post-reply-btn': (event) ->
+    'click .post-header': (event) ->
         # Show post input if it's not already visible
         newPostPanelBottom = document.getElementById('newPostPanel').getBoundingClientRect().bottom
         if newPostPanelBottom > window.innerHeight
