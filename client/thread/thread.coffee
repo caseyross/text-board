@@ -1,16 +1,11 @@
 Template.thread.helpers
     posts: -> Posts.find({})
-    linked_post: ->
-        if Session.get 'post_overlay'
-            return Posts.findOne {number: parseInt(Session.get 'post_overlay', 10)}
-        else
-            return undefined
     
 Template.thread.events
     'mouseover .backlink': (event) ->
-        Session.set 'post_overlay', event.target.hash[1..]
+        togglePostOverlay on
     'mouseout .backlink': (event) ->
-        Session.set 'post_overlay', undefined
+        togglePostOverlay off
     'focus .post-reply-btn': (event) ->
         toggleReplyHint on, @number
         saveSelection()
@@ -52,6 +47,15 @@ Template.thread.events
         return selection.replace(/^/mg, '$&> ')
     else
         return ''
+        
+@togglePostOverlay = (status) =>
+    if status
+        Session.set 'post_overlay', event.target.hash[1..]
+        overlay = document.getElementById('postOverlay')
+        overlay.style.top = event.pageY + 'px'
+        overlay.style.left = event.pageX + 'px'
+    else
+        Session.set 'post_overlay', undefined
 
 @toggleReplyHint = (status, number) ->
     if status
