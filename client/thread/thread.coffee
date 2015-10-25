@@ -2,19 +2,19 @@ Template.thread.helpers
     posts: -> Posts.find({})
     
 Template.thread.events
-    'mouseover .backlink': (event) ->
+    'mouseenter .backlink': (event) ->
         togglePostOverlay on
-    'mouseout .backlink': (event) ->
+    'mouseleave .backlink': (event) ->
         togglePostOverlay off
     'focus .post-reply-btn': (event) ->
-        toggleReplyHint on, @number
+        #toggleReplyHint on, @number
         saveSelection()
     'blur .post-reply-btn': (event) ->
-        toggleReplyHint off, @number
-    'mouseover .post-header': (event) ->
+        #toggleReplyHint off, @number
+    'mouseenter .post-header': (event) ->
         toggleReplyHint on, @number
         saveSelection()
-    'mouseout .post-header': (event) ->
+    'mouseleave .post-header': (event) ->
         toggleReplyHint off, @number
     'click .post-header': (event) ->
         # Show post input if it's not already visible
@@ -50,10 +50,12 @@ Template.thread.events
         
 @togglePostOverlay = (status) =>
     if status
-        Session.set 'post_overlay', event.target.hash[1..]
+        originalPostNumber = event.target.hash[1..]
+        Session.set 'post_overlay', originalPostNumber
+        originalPost = document.getElementById(originalPostNumber)
         overlay = document.getElementById('postOverlay')
-        overlay.style.top = event.pageY + 'px'
-        overlay.style.left = event.pageX + 'px'
+        overlay.style.top = (event.pageY - event.offsetY + event.target.offsetTop - originalPost.offsetHeight // 2 + event.target.offsetHeight // 2) + 'px'
+        overlay.style.left = (event.pageX - event.offsetX + event.target.offsetLeft) + 'px'
     else
         Session.set 'post_overlay', undefined
 
