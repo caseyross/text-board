@@ -1,2 +1,4 @@
 Meteor.subscribe 'threads'
-Meteor.subscribe 'posts'
+
+Tracker.autorun ->
+    Meteor.subscribe 'posts', FlowRouter.getParam '_id'

@@ -1,7 +1,15 @@
 Template.thread.helpers
-    posts: -> Posts.find(_tid: FlowRouter.getParam '_id' )
+    posts: -> Posts.find({})
+    linked_post: ->
+        console.log Session.get 'post_overlay'
+        post = Posts.findOne {number: Session.get 'post_overlay'}
+        console.log post
     
 Template.thread.events
+    'mouseover .backlink': (event) ->
+        Session.set 'post_overlay', event.target.hash[1..]
+    'mouseout .backlink': (event) ->
+        Session.set 'post_overlay', undefined
     'focus .post-reply-btn': (event) ->
         toggleReplyHint on, @number
         saveSelection()
