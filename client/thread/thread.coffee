@@ -1,9 +1,10 @@
 Template.thread.helpers
     posts: -> Posts.find({})
     linked_post: ->
-        console.log Session.get 'post_overlay'
-        post = Posts.findOne {number: Session.get 'post_overlay'}
-        console.log post
+        if Session.get 'post_overlay'
+            return Posts.findOne {number: parseInt(Session.get 'post_overlay', 10)}
+        else
+            return undefined
     
 Template.thread.events
     'mouseover .backlink': (event) ->
