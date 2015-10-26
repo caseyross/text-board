@@ -3,8 +3,12 @@ Template.thread.helpers
     
 Template.thread.events
     'mouseenter .backlink': (event) ->
-        togglePostOverlay on
+        togglePostOverlay 'right'
     'mouseleave .backlink': (event) ->
+        togglePostOverlay off
+    'mouseenter .forelink': (event) ->
+        togglePostOverlay 'left'
+    'mouseleave .forelink': (event) ->
         togglePostOverlay off
     'focus .post-reply-btn': (event) ->
         #toggleReplyHint on, @number
@@ -49,15 +53,23 @@ Template.thread.events
         return ''
         
 @togglePostOverlay = (status) =>
-    if status
-        originalPostNumber = event.target.hash[1..]
-        Session.set 'post_overlay', originalPostNumber
-        originalPost = document.getElementById(originalPostNumber)
-        overlay = document.getElementById('postOverlay')
-        overlay.style.top = (event.pageY - event.offsetY + event.target.offsetTop - originalPost.offsetHeight // 2 + event.target.offsetHeight // 2) + 'px'
-        overlay.style.left = (event.pageX - event.offsetX + event.target.offsetLeft) + 'px'
-    else
-        Session.set 'post_overlay', undefined
+    switch status
+        when 'right'
+            originalPostNumber = event.target.hash[1..]
+            Session.set 'post_overlay', originalPostNumber
+            originalPost = document.getElementById(originalPostNumber)
+            overlay = document.getElementById('postOverlay')
+            overlay.style.top = (event.pageY - event.offsetY + event.target.offsetTop - originalPost.offsetHeight // 2 + event.target.offsetHeight // 2) + 'px'
+            overlay.style.left = (event.pageX - event.offsetX + event.target.offsetLeft - 8) + 'px'
+        when 'left'
+            originalPostNumber = event.target.hash[1..]
+            Session.set 'post_overlay', originalPostNumber
+            originalPost = document.getElementById(originalPostNumber)
+            overlay = document.getElementById('postOverlay')
+            overlay.style.top = (event.pageY - event.offsetY - originalPost.offsetHeight // 2 + event.target.offsetHeight // 2) + 'px'
+            overlay.style.left = (event.pageX - event.offsetX - originalPost.offsetWidth - 8) + 'px'
+        else
+            Session.set 'post_overlay', undefined
 
 @toggleReplyHint = (status, number) ->
     if status
