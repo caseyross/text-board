@@ -1,6 +1,11 @@
+cw = 845px
+
 .post-container
     position relative
-    width 896px
+    @media screen and (max-width: cw)
+        width 90vw
+    @media screen and (min-width: cw)
+        width cw
     margin 0 auto
     
     
@@ -30,7 +35,8 @@
             font-family monospace
     
     .post-body
-        width 640px
+        @media screen and (min-width: cw)
+            width 640px
         margin-left 40px
         padding 16px
         display inline-block
@@ -51,16 +57,25 @@
             color #F33
         
     .post-meta
-        width 160px
+        @media screen and (min-width: cw)
+            width 160px
+        @media screen and (max-width: cw)
+            margin-left 40px
         padding 16px
         font-size 1.2rem
-        display inline-block
+        @media screen and (min-width: cw)
+            display inline-block
         vertical-align top
         
         .post-time
+            @media screen and (max-width: cw)
+                display inline
             color gray
         
         .post-forelinks
+            @media screen and (max-width: cw)
+                margin-left 16px
+                display inline
             
             a.forelink
                 font-size 1.6rem
