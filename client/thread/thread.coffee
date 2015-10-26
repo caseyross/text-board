@@ -60,7 +60,8 @@ Template.thread.events
             originalPost = document.getElementById(originalPostNumber)
             overlay = document.getElementById('postOverlay')
             overlay.style.top = (event.pageY - event.offsetY + event.target.offsetTop - originalPost.offsetHeight // 2 + event.target.offsetHeight // 2) + 'px'
-            overlay.style.left = (event.pageX - event.offsetX + event.target.offsetLeft - 8) + 'px'
+            overlay.style.left = (event.pageX - event.offsetX + event.target.offsetLeft - 26 + 9 * event.target.hash.length) + 'px'
+            # TODO: Maybe we can remove some of these magic numbers
         when 'left'
             originalPostNumber = event.target.hash[1..]
             Session.set 'post_overlay', originalPostNumber
