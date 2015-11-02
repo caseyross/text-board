@@ -11,10 +11,10 @@ Template.thread.events
     'mouseleave .forelink': (event) ->
         togglePostOverlay off
     'focus .post-reply-btn': (event) ->
-        #toggleReplyHint on, @number
+        toggleReplyHint on, @number
         saveSelection()
     'blur .post-reply-btn': (event) ->
-        #toggleReplyHint off, @number
+        toggleReplyHint off, @number
     'mouseenter .post-header': (event) ->
         toggleReplyHint on, @number
         saveSelection()
@@ -74,9 +74,9 @@ Template.thread.events
 
 @toggleReplyHint = (status, number) ->
     if status
-        document.getElementById('rh' + number).classList.remove 'invisible'
+        document.getElementById('rh' + number).classList.remove 'absent'
     else
-        document.getElementById('rh' + number).classList.add 'invisible'
+        document.getElementById('rh' + number).classList.add 'absent'
         
         
 @toggleFloatPanel = (status) ->

@@ -1,8 +1,8 @@
 .post-container(id='#{number}')
     .post-header
-        .reply-hint.invisible(id='rh#{number}')
         button.post-reply-btn
             .post-id #{number}
+            .reply-hint.absent(id='rh#{number}') >>
     .post-body !{prettyContent}
     .post-meta
         .post-time #{prettyTimestamp}

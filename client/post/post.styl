@@ -1,4 +1,9 @@
-cw = 848px
+hcw = 40px
+hew = 16px
+hw = hcw + hew
+bw = 640px
+mw = 160px
+cw = hw + bw + mw + 10px
 
 .post-container
     position relative
@@ -8,36 +13,49 @@ cw = 848px
         width cw
     margin 0 auto
     
+    ::selection
+        color white
+        background #f33
     
     .post-header
         position absolute
         top 0
         bottom 0
-        width 40px
+        width hcw
+        margin-left hew
         margin-top 16px
         border-top 1px solid gray
         display inline-block
         vertical-align top
+        font-family monospace
         cursor pointer
+        transition all 0.3s ease-out
             
         &:hover
         &:focus
-            background #EEE
-        
-        .reply-hint
-            display inline-block
-            font-size 1.2rem
+            width hw
+            margin-left 0
         
         .post-reply-btn
+            padding 1px 0
             border 0
             float right
-            color gray
-            font-family monospace
+            color inherit
+            background inherit
+            font-size 1.2rem
+            font-family inherit
+            cursor pointer
+        
+            .reply-hint
+                float right
+                
+            .post-id
+                float right
     
     .post-body
         @media screen and (min-width: cw)
-            width 640px
-        margin-left 40px
+            width bw
+        margin-left hw
         padding 16px
         display inline-block
         white-space pre-wrap
@@ -55,13 +73,13 @@ cw = 848px
                 color blue
                 
         .quote
-            color #F33
+            color #f33
         
     .post-meta
         @media screen and (min-width: cw)
-            width 160px
+            width mw
         @media screen and (max-width: cw)
-            margin-left 40px
+            margin-left hw
         padding 16px 0 16px 16px
         font-size 1.2rem
         @media screen and (min-width: cw)
