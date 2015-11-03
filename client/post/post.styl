@@ -24,25 +24,27 @@ cw = hw + bw + mw + 10px
         width hcw
         margin-left hew
         margin-top 16px
-        border-top 1px solid gray
+        // border-top 1px solid gray
         display inline-block
         vertical-align top
         font-family monospace
+        color #999
         cursor pointer
-        transition all 0.3s ease-out
+        transition all 0.2s ease-out
             
         &:hover
         &:focus
             width hw
             margin-left 0
+            color #666
         
         .post-reply-btn
-            padding 1px 0
+            padding 4px 0
             border 0
             float right
             color inherit
             background inherit
-            font-size 1.2rem
+            font-size 1.4rem
             font-family inherit
             cursor pointer
         
@@ -70,7 +72,7 @@ cw = hw + bw + mw + 10px
             color white
             
             &:hover
-                color blue
+                background #ccc
                 
         .quote
             color #f33
@@ -89,7 +91,7 @@ cw = hw + bw + mw + 10px
         .post-time
             @media screen and (max-width: cw)
                 display inline
-            color gray
+            color #999
         
         .post-forelinks
             @media screen and (max-width: cw)
@@ -104,4 +106,4 @@ cw = hw + bw + mw + 10px
                 color white
                 
                 &:hover
-                    color blue
+                    background #ccc
