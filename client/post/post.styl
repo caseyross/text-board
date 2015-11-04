@@ -60,22 +60,30 @@ cw = hw + bw + mw + 10px
         margin-left hw
         padding 16px
         display inline-block
-        white-space pre-wrap
-        font-size 1.6rem
-        line-height 1.5
         
-        a.backlink
-            font-size 2rem
-            font-family monospace
-            text-decoration none
-            background gray
-            color white
-            
-            &:hover
-                background #ccc
+        .post-image
+            display inline-block
+            vertical-align top
+            // padding 0 16px 16px 0
+        
+        .post-text
+            display inline
+            white-space pre-wrap
+            font-size 1.6rem
+            line-height 1.5
+        
+            a.backlink
+                font-size 2rem
+                font-family monospace
+                text-decoration none
+                background gray
+                color white
                 
-        .quote
-            color #f33
+                &:hover
+                    background #ccc
+                    
+            .quote
+                color #f33
         
     .post-meta
         @media screen and (min-width: cw)
