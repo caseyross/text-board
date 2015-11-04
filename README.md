@@ -10,7 +10,7 @@ Quoting: Working
 
 Reply linking: Working
 
-Reply highlighting/popups: No
+Reply highlighting/popups: Working
 
 Post editing/deleting: No
 
@@ -22,6 +22,8 @@ Thread creation: Provisional
 
 Catalog: Provisional
 
-Boards: Just the one
+Boards: No
 
 Modding: No
+
+Mobile layout: Working
