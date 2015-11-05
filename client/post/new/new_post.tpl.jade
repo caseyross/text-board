@@ -3,11 +3,13 @@
         .post-body
             form
                 textarea.post-input#postInput(name='content') #{postInput}
-                input.post-submit-btn(type='submit' value='post')
+                input.file-upload(type='file' name='file')
+                input.post-submit-btn(type='submit')
         button.cancel-floating-btn.absent#cancelFloatingBtn X
 .new_post-panel.absent#newPostPanelSpacer
     .post-container
         .post-body
             form
                 textarea.post-input
+                input.file-upload
                 input.post-submit-btn
