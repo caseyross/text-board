@@ -28,3 +28,31 @@ Template.post.helpers
             result += reply
             result += '</a> '
         return result
+        
+#Template.post.events
+    #'click .post-image': (event) ->
+        #toggleFullImage on, @number
+    #'click .post-image-full': (event) ->
+        #toggleFullImage off, @number
+        #
+#toggleFullImage = (status, number) ->
+    #img = document.getElementById('img' + number)
+    #imgf = document.getElementById('imgf' + number)
+    #parent = img.parentElement
+    #parentWidth = $(parent).outerWidth(true)
+    #container = document.getElementById(number)
+    #containerWidth = $(container).outerWidth(true)
+    #if status
+        #img.classList.add('absent')
+        #imgf.classList.remove('absent')
+        #extraWidth = imgf.offsetWidth - img.offsetWidth
+        #console.log extraWidth, parentWidth, containerWidth
+        #parent.style.width = parentWidth + extraWidth + 'px'
+        #container.style.width = containerWidth + extraWidth + 'px'
+    #else
+        #extraWidth = imgf.offsetWidth - img.offsetWidth
+        #imgf.classList.add('absent')
+        #img.classList.remove('absent')
+        #console.log extraWidth, parentWidth, containerWidth
+        #parent.style.width = parentWidth - extraWidth + 'px'
+        #container.style.width = containerWidth - extraWidth + 'px'

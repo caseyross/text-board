@@ -4,8 +4,12 @@
             .post-id #{number}
             .reply-hint.absent(id='rh#{number}') >>
     .post-body
-        .post-image
-            img(src='http://res.cloudinary.com/dp7mdyryy/image/upload/c_limit,h_160,w_160/v1444645316/sample.jpg')
+        a.post-image(href='/i/sample.jpg')
+            img(src='https://res.cloudinary.com/dp7mdyryy/image/upload/c_limit,h_160,w_160/v1444645316/sample.jpg')
+        // .post-image(id='img#{number}')
+        //     img(src='https://res.cloudinary.com/dp7mdyryy/image/upload/c_limit,h_160,w_160/v1444645316/sample.jpg')
+        // .post-image-full.absent(id='imgf#{number}')
+        //     img(src='https://res.cloudinary.com/dp7mdyryy/image/upload/v1444645316/sample.jpg')
         .post-text !{prettyContent}
     .post-meta
         .post-time #{prettyTimestamp}
