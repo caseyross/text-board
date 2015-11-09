@@ -38,6 +38,7 @@ Meteor.methods
             id = Posts.insert
                 _tid: tid
                 number: number
+                image: 'sample.jpg'
                 content: content
                 timestamp: +moment()
                 replies: []
