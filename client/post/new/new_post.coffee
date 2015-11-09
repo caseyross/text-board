@@ -14,12 +14,19 @@ Template.new_post.events
         Session.set 'postInputCursorPos', event.target.selectionStart
     'submit form': (event) ->
         event.preventDefault()
-        content = event.target.content.value
+        content = event.target.textInput.value
         Meteor.call 'postReply', FlowRouter.getParam('_id'), content, (error, result) ->
             if result
                 toggleFloatPanel off
                 Session.set 'postInput', ''
-                event.target.content.value = ""
+                event.target.textInput.value = ""
+                files = event.target.fileInput.files
+                if files
+                    Cloudinary.upload files, (error, result) ->
+                        if result
+                            console.log result
+                        else
+                            console.log error
             else
                 console.log error
                 # TODO: tell users about error
