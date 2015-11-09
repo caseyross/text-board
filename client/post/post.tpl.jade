@@ -7,9 +7,9 @@
         // a.post-image(href='/i/sample.jpg')
         //     img(src='https://res.cloudinary.com/dp7mdyryy/image/upload/c_limit,h_160,w_160/v1444645316/sample.jpg')
         .post-image(id='img#{number}')
-            img(src='https://res.cloudinary.com/dp7mdyryy/image/upload/c_limit,h_160,w_160/v1444645316/sample.jpg')
+            img(src="{{c.url 'sample.jpg' width=160 height=160 crop='limit'}}")
         .post-image-full.absent(id='imgf#{number}' style='width: 864px')
-            img(src='https://res.cloudinary.com/dp7mdyryy/image/upload/v1444645316/sample.jpg')
+            img(src="{{c.url 'sample.jpg'}}")
         .post-text(style='max-width: 864px') !{prettyContent}
     .post-meta
         .post-time #{prettyTimestamp}
