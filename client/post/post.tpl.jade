@@ -4,14 +4,12 @@
             .post-id #{number}
             .reply-hint.absent(id='rh#{number}') >>
     .post-body
-        // a.post-image(href='/i/sample.jpg')
-        //     img(src='https://res.cloudinary.com/dp7mdyryy/image/upload/c_limit,h_160,w_160/v1444645316/sample.jpg')
-        +if image
-            .post-image(id='img#{number}')
-                img(src="{{c.url image width=160 height=160 crop='limit'}}")
-            .post-image-full.absent(id='imgf#{number}' style='width: 864px')
-                img(src="{{c.url image}}")
-        .post-text(style='max-width: 864px') !{prettyContent}
+        // TODO: Need placeholder images until original image is transformed (~3 minutes)
+        .post-image(id='img#{number}')
+            img(src="{{c.url image fetch_format='auto' width=160 height=160 crop='limit'}}")
+        .post-image-full.absent(id='imgf#{number}' style='width: #{image_width}')
+            img(src="{{c.url image fetch_format='auto'}}")
+        .post-text(style='max-width: #{image_width}') !{prettyContent}
     .post-meta
         .post-time #{prettyTimestamp}
         .post-forelinks !{prettyForelinks}

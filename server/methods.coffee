@@ -19,7 +19,7 @@ Meteor.methods
         else
             throw new Meteor.Error 'incomplete-form'
 
-    postReply: (tid, content) ->
+    postReply: (tid, content, image_id, image_width) ->
         content = content.trim()
         if content.length > 0
             # Increase post count
@@ -38,8 +38,9 @@ Meteor.methods
             id = Posts.insert
                 _tid: tid
                 number: number
-                image: 'sample.jpg'
                 content: content
+                image: image_id
+                image_width: image_width
                 timestamp: +moment()
                 replies: []
                 replyIds: []
