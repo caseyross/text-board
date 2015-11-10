@@ -37,8 +37,8 @@ cw = hw + bw + mw + 8px
         &:focus
             width hw
             margin-left 0
+            color gray
             border-top 1px solid gray
-            // box-shadow 2px 2px 8px #333
         
         .post-reply-btn
             padding 4px 0
@@ -100,11 +100,8 @@ cw = hw + bw + mw + 8px
                 color #f33
         
     .post-meta
-        @media screen and (min-width: cw)
-            width mw
-        @media screen and (max-width: cw)
-            margin-left hw
-        padding 16px 0 16px 16px
+        width mw
+        padding 16px 0
         font-size 1.2rem
         @media screen and (min-width: cw)
             display inline-block
