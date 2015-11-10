@@ -3,7 +3,7 @@
         .post-body
             form
                 textarea.post-input#postInput(name='textInput') #{postInput}
-                input.file-upload(type='file' name='fileInput')
+                input.file-upload#postFileInput(type='file' name='fileInput')
                 input.post-submit-btn#postSubmitBtn(type='submit')
         button.cancel-floating-btn.absent#cancelFloatingBtn X
 .new_post-panel.absent#newPostPanelSpacer

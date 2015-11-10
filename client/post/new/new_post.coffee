@@ -32,6 +32,7 @@ Template.new_post.events
                             window.URL.revokeObjectURL(@src)
                         image.src = window.URL.createObjectURL(files[0])
                     else
+                        # TODO: provide error feedback
                         console.log error
                         setPostSubmitBtn 'ready'
             )
@@ -45,10 +46,11 @@ Template.new_post.events
             toggleFloatPanel off
             Session.set 'postInput', ''
             document.getElementById('postInput').value = ""
+            document.getElementById('postFileInput').value = ""
         else
             console.log error
-        setPostSubmitBtn 'ready'
             # TODO: tell users about error
+        setPostSubmitBtn 'ready'
             
 @setPostSubmitBtn = (state) ->
     postSubmitBtn = document.getElementById('postSubmitBtn')
