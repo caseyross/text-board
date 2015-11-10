@@ -21,7 +21,7 @@ Meteor.methods
 
     postReply: (tid, content, image_id, image_width) ->
         content = content.trim()
-        if content.length > 0
+        if content.length > 0 or image_width > 0
             # Increase post count
             thread = Threads.findAndModify
                 query:
