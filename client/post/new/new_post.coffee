@@ -16,7 +16,7 @@ Template.new_post.events
         event.preventDefault()
         content = event.target.textInput.value
         files = event.target.fileInput.files
-        if files
+        if files.length > 0
             # Possibly extendable to multiple images
             image_id = Random.id()
             image = new Image()

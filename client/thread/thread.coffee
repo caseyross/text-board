@@ -56,7 +56,6 @@ Template.thread.events
 @togglePostOverlay = (status) =>
     overlay = document.getElementById('postOverlay')
     if status == off
-        console.log 'off'
         overlay.classList.add 'absent'
         Session.set 'post_overlay', undefined
     else
