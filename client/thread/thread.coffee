@@ -53,16 +53,16 @@ Template.thread.events
     else
         return ''
         
-@togglePostOverlay = (status) =>
+@togglePostOverlay = (state) =>
     overlay = document.getElementById('postOverlay')
-    if status == off
+    if state == off
         overlay.classList.add 'absent'
         Session.set 'post_overlay', undefined
     else
         originalPostNumber = event.target.hash[1..]
         Session.set 'post_overlay', originalPostNumber
         originalPost = document.getElementById(originalPostNumber)
-        switch status
+        switch state
             when 'right'
                 overlay.style.top = (event.target.offsetParent.offsetTop + event.target.offsetTop + event.target.offsetHeight // 2 - originalPost.offsetHeight // 2) + 'px'
                 overlay.style.left = (event.target.offsetParent.offsetLeft + event.target.offsetLeft + 10 * event.target.innerText.length + 2) + 'px'
@@ -71,15 +71,15 @@ Template.thread.events
                 overlay.style.left = (event.pageX - event.offsetX - originalPost.offsetWidth - 8) + 'px'
         overlay.classList.remove 'absent'
 
-@toggleReplyHint = (status, number) ->
-    if status
+@toggleReplyHint = (state, number) ->
+    if state
         document.getElementById('rh' + number).classList.remove 'absent'
     else
         document.getElementById('rh' + number).classList.add 'absent'
         
         
-@toggleFloatPanel = (status) ->
-    if status
+@toggleFloatPanel = (state) ->
+    if state
         document.getElementById('newPostPanel').classList.add 'floating'
         document.getElementById('newPostPanelSpacer').classList.add 'invisible'
         document.getElementById('newPostPanelSpacer').classList.remove 'absent'

@@ -17,6 +17,7 @@ Template.new_post.events
         content = event.target.textInput.value
         files = event.target.fileInput.files
         if files.length > 0
+            setPostSubmitBtn 'uploading'
             # Possibly extendable to multiple images
             image_id = Random.id()
             Cloudinary.upload(
@@ -32,9 +33,10 @@ Template.new_post.events
                         image.src = window.URL.createObjectURL(files[0])
                     else
                         console.log error
+                        setPostSubmitBtn 'ready'
             )
         else
-            postReply(content, '', 0)
+            postReply(content, '', -1)
             
 @postReply = (content, image_id, image_width) ->
     # Theoretically the user could set parameters to whatever but I don't see a problem
@@ -45,4 +47,15 @@ Template.new_post.events
             document.getElementById('postInput').value = ""
         else
             console.log error
+        setPostSubmitBtn 'ready'
             # TODO: tell users about error
+            
+@setPostSubmitBtn = (state) ->
+    postSubmitBtn = document.getElementById('postSubmitBtn')
+    switch state
+        when 'ready'
+            postSubmitBtn.disabled = false
+            postSubmitBtn.value = 'Submit'
+        when 'uploading'
+            postSubmitBtn.disabled = true
+            postSubmitBtn.value = 'Uploading...'
