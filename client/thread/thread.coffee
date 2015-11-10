@@ -7,6 +7,7 @@ Template.thread.events
     'mouseleave .backlink': (event) ->
         togglePostOverlay off
     'mouseenter .forelink': (event) ->
+        # TODO: Show on right for small-screen layout
         togglePostOverlay 'left'
     'mouseleave .forelink': (event) ->
         togglePostOverlay off
@@ -59,9 +60,10 @@ Template.thread.events
             Session.set 'post_overlay', originalPostNumber
             originalPost = document.getElementById(originalPostNumber)
             overlay = document.getElementById('postOverlay')
+            # TODO: Make math less brittle
+            console.log event
             overlay.style.top = (event.pageY - event.offsetY + event.target.offsetTop - originalPost.offsetHeight // 2 + event.target.offsetHeight // 2) + 'px'
-            overlay.style.left = (event.pageX - event.offsetX + event.target.offsetLeft - 26 + 9 * event.target.hash.length) + 'px'
-            # TODO: Maybe we can remove some of these magic numbers
+            overlay.style.left = (event.target.offsetParent.offsetLeft + event.target.offsetLeft + 10 * event.target.innerText.length) + 'px'
         when 'left'
             originalPostNumber = event.target.hash[1..]
             Session.set 'post_overlay', originalPostNumber
