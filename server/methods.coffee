@@ -1,17 +1,19 @@
 Meteor.methods
 
-    postThread: (name, content) ->
-        name = name.trim()
+    postThread: (title, content, image_id) ->
+        title = title.trim()
         content = content.trim()
-        if name.length > 0 and content.length > 0
+        if title.length > 0 and content.length > 0
             tid = Threads.insert
-                name: name
+                title: title
                 postCount: 1
                 timestamp: +moment()
             Posts.insert
                 _tid: tid
                 number: 1
                 content: content
+                image: image_id
+                image_status: 'uploaded'
                 timestamp: +moment()
                 replies: []
                 replyIds: []

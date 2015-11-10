@@ -1,6 +1,9 @@
 .post-container
-    form
-        .post-body
-            input.thread-title-input(type='text' name='title' autofocus)
-            textarea.thread-firstPost-input(name='firstPost')
-            input.thread-create-btn(type='submit' value='create')
+    .post-body
+        form
+            label Title
+            input.thread-title-input(type='text' name='titleInput' autofocus='true')
+            label First post
+            textarea.thread-first-post-input(name='firstPostInput')
+            input(type='file' name='fileInput')
+            input.thread-submit-btn#threadSubmitBtn(type='submit' value='Submit')

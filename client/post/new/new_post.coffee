@@ -32,9 +32,9 @@ Template.new_post.events
                         setPostSubmitBtn 'ready'
             )
         else
-            postReply(content, '', -1)
+            postReply(content, undefined)
             
-@postReply = (content, image_id, image_width) ->
+@postReply = (content, image_id) ->
     # Theoretically the user could set parameters to whatever but I don't see a problem
     Meteor.call 'postReply', FlowRouter.getParam('_id'), content, image_id, (error, result) ->
         if result
