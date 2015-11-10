@@ -60,9 +60,8 @@ Template.thread.events
             Session.set 'post_overlay', originalPostNumber
             originalPost = document.getElementById(originalPostNumber)
             overlay = document.getElementById('postOverlay')
-            # TODO: Make math less brittle
             console.log event
-            overlay.style.top = (event.pageY - event.offsetY + event.target.offsetTop - originalPost.offsetHeight // 2 + event.target.offsetHeight // 2) + 'px'
+            overlay.style.top = (event.target.offsetParent.offsetTop + event.target.offsetTop + event.target.offsetHeight // 2 - originalPost.offsetHeight // 2) + 'px'
             overlay.style.left = (event.target.offsetParent.offsetLeft + event.target.offsetLeft + 10 * event.target.innerText.length) + 'px'
         when 'left'
             originalPostNumber = event.target.hash[1..]
