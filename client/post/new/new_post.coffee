@@ -25,12 +25,7 @@ Template.new_post.events
                 public_id: image_id,
                 (error, result) ->
                     if result
-                        image = new Image()
-                        image.onload = (event) ->
-                            image_width = image.width
-                            postReply(content, image_id, image_width)
-                            window.URL.revokeObjectURL(@src)
-                        image.src = window.URL.createObjectURL(files[0])
+                        postReply(content, image_id)
                     else
                         # TODO: provide error feedback
                         console.log error
@@ -41,7 +36,7 @@ Template.new_post.events
             
 @postReply = (content, image_id, image_width) ->
     # Theoretically the user could set parameters to whatever but I don't see a problem
-    Meteor.call 'postReply', FlowRouter.getParam('_id'), content, image_id, image_width, (error, result) ->
+    Meteor.call 'postReply', FlowRouter.getParam('_id'), content, image_id, (error, result) ->
         if result
             toggleFloatPanel off
             Session.set 'postInput', ''
