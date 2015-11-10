@@ -41,13 +41,14 @@ Meteor.methods
                 content: content
                 image: image_id
                 image_width: image_width
+                image_status: 'uploaded'
                 timestamp: +moment()
                 replies: []
                 replyIds: []
             # Mark replies to previous posts
             if repliedTo?
                 Meteor.call('insertReplies', tid, number, repliedTo, id)
-            return true
+            return id
         else
             throw new Meteor.Error 'incomplete-form'
 
@@ -57,3 +58,6 @@ Meteor.methods
         repliedTo = _.uniq(repliedTo)
         for numberRepliedTo in repliedTo
             Posts.update( {_tid: tid, number: numberRepliedTo}, {$push: {replies: number}} )
+            
+    updateImageStatus: (id, newStatus) ->
+        Posts.update( {_id: id}, {$set: {image_status: newStatus}} )

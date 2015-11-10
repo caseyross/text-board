@@ -19,18 +19,17 @@ Template.new_post.events
         if files.length > 0
             # Possibly extendable to multiple images
             image_id = Random.id()
-            image = new Image()
-            image.onload = (event) ->
-                image_width = image.width
-                postReply(content, image_id, image_width)
-                window.URL.revokeObjectURL(@src)
-            image.src = window.URL.createObjectURL(files[0])
             Cloudinary.upload(
                 files,
                 public_id: image_id,
                 (error, result) ->
                     if result
-                        console.log result
+                        image = new Image()
+                        image.onload = (event) ->
+                            image_width = image.width
+                            postReply(content, image_id, image_width)
+                            window.URL.revokeObjectURL(@src)
+                        image.src = window.URL.createObjectURL(files[0])
                     else
                         console.log error
             )

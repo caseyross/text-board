@@ -65,7 +65,7 @@ Template.thread.events
         switch status
             when 'right'
                 overlay.style.top = (event.target.offsetParent.offsetTop + event.target.offsetTop + event.target.offsetHeight // 2 - originalPost.offsetHeight // 2) + 'px'
-                overlay.style.left = (event.target.offsetParent.offsetLeft + event.target.offsetLeft + 10 * event.target.innerText.length) + 'px'
+                overlay.style.left = (event.target.offsetParent.offsetLeft + event.target.offsetLeft + 10 * event.target.innerText.length + 2) + 'px'
             when 'left'
                 overlay.style.top = (event.target.offsetParent.offsetTop + event.target.offsetTop + event.target.offsetHeight // 2 - originalPost.offsetHeight // 2) + 'px'
                 overlay.style.left = (event.pageX - event.offsetX - originalPost.offsetWidth - 8) + 'px'

@@ -4,7 +4,6 @@
             .post-id #{number}
             .reply-hint.absent(id='rh#{number}') >>
     .post-body
-        // TODO: Need placeholder images until original image is transformed (~3 minutes)
         .post-image(id='img#{number}')
             img(src="{{c.url image fetch_format='auto' width=160 height=160 crop='limit'}}")
         .post-image-full.absent(id='imgf#{number}' style='width: #{image_width}')
