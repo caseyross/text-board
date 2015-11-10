@@ -1,9 +1,9 @@
-hcw = 40px
+hcw = 32px
 hew = 16px
 hw = hcw + hew
 bw = 640px
 mw = 160px
-cw = hw + bw + mw + 10px
+cw = hw + bw + mw + 8px
 
 .post-container
     position relative
@@ -26,7 +26,6 @@ cw = hw + bw + mw + 10px
         width hcw
         margin-left hew
         margin-top 16px
-        // border-top 1px solid gray
         display inline-block
         vertical-align top
         font-family monospace
@@ -38,7 +37,8 @@ cw = hw + bw + mw + 10px
         &:focus
             width hw
             margin-left 0
-            color #666
+            border-top 1px solid gray
+            // box-shadow 2px 2px 8px #333
         
         .post-reply-btn
             padding 4px 0
