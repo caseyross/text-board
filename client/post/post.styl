@@ -2,8 +2,8 @@ hcw = 32px
 hew = 16px
 hw = hcw + hew
 bw = 640px
-mw = 160px
-cw = hw + bw + mw + 8px
+mw = 96px
+cw = hw + bw + mw
 
 .post-container
     position relative
@@ -31,7 +31,7 @@ cw = hw + bw + mw + 8px
         font-family monospace
         color #999
         cursor pointer
-        transition all 0.2s ease-out
+        transition all 0.1s ease-in-out
             
         &:hover
         &:focus
@@ -60,6 +60,7 @@ cw = hw + bw + mw + 8px
         @media screen and (min-width: cw)
             width bw
         margin-left hw
+        margin-right mw
         padding 16px
         display inline-block
             
@@ -70,7 +71,6 @@ cw = hw + bw + mw + 8px
             display inline-block
             vertical-align top
             padding-top 3px
-            // padding 0 16px 16px 0
             cursor pointer
             
         .post-image-full
@@ -100,12 +100,12 @@ cw = hw + bw + mw + 8px
                 color #f33
         
     .post-meta
+        position absolute
+        top 0
+        right 0
         width mw
-        padding 16px 0
+        padding-top 16px
         font-size 1.2rem
-        @media screen and (min-width: cw)
-            display inline-block
-        vertical-align top
         
         .post-time
             @media screen and (max-width: cw)
