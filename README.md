@@ -2,28 +2,28 @@
 
 ## Thread things
 
-Posting: Working
+Posting: :white_check_mark:
 
-Replies: Working
+Replies: :white_check_mark:
 
-Quoting: Working
+Quoting: :white_check_mark:
 
-Reply linking: Working
+Reply linking: :white_check_mark:
 
-Reply highlighting/popups: Working
+Reply highlighting/popups: :white_check_mark:
 
-Post editing/deleting: No
+Post editing/deleting: :x:
 
-IDs: No
+IDs: :x:
 
 ## General things
 
-Thread creation: Provisional
+Thread creation: :construction:
 
-Catalog: Provisional
+Catalog: :construction:
 
-Boards: No
+Different boards: :x:
 
-Modding: No
+Modding: :x:
 
-Mobile layout: Working
+Mobile layout: :boom:
