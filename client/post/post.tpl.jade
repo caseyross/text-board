@@ -6,9 +6,9 @@
     .post-body
         if image
             .post-image(id='img#{number}')
-                img(src="{{c.url image fetch_format='auto' width=160 height=160 crop='limit'}}")
+                img(src="{{c.url image quality='50' fetch_format='auto' width=160 height=160 crop='limit'}}")
             .post-image-full.absent(id='imgf#{number}')
-                img.scaled(src="{{c.url image fetch_format='auto'}}")
+                img.scaled(src="{{c.url image quality='50' fetch_format='auto'}}")
         .post-text !{prettyContent}
     .post-meta
         .post-time #{prettyTimestamp}
