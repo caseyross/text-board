@@ -20,6 +20,7 @@ Template.new_post.events
             setPostSubmitBtn 'uploading'
             # Possibly extendable to multiple images
             image_id = Random.id()
+            # TODO: may want to eagerly create full-size version
             Cloudinary.upload(
                 files,
                 public_id: image_id,

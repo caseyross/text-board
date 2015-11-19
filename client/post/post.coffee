@@ -41,6 +41,7 @@ toggleFullImage = (status, number) ->
     postBody = img.parentElement
     postContainer = document.getElementById(number)
     if status
+        imgf.children[0].src = imgf.children[0].dataset.src
         img.classList.add('absent')
         imgf.classList.remove('absent')
         postBody.classList.add('expanded-image')
