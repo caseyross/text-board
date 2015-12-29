@@ -68,9 +68,9 @@ Template.thread.events
 
 @toggleReplyHint = (state, number) ->
     if state
-        document.getElementById('rh' + number).classList.remove 'absent'
+        document.getElementById('rh' + number).classList.remove 'invisible'
     else
-        document.getElementById('rh' + number).classList.add 'absent'
+        document.getElementById('rh' + number).classList.add 'invisible'
         
         
 @toggleFloatPanel = (state) ->
