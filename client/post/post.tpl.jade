@@ -4,10 +4,15 @@
         .reply-hint.absent(id='rh#{number}') Reply
     .post-body
         if image
-            .post-image(id='img#{number}')
-                img(src="{{c.url image quality='50' fetch_format='auto' width=160 height=160 crop='limit'}}")
-            .post-image-full.absent(id='imgf#{number}')
-                img.scaled(data-src="{{c.url image quality='50' fetch_format='auto'}}")
+            .post-image
+                img.thumb(
+                    id='t#{number}'
+                    src="{{c.url image quality='50' fetch_format='auto' width=160 height=160 crop='limit'}}"
+                    )
+                img.full.absent(
+                    id='i#{number}'
+                    data-src="{{c.url image quality='50' fetch_format='auto' width=760 crop='limit'}}"
+                    )
         .post-text !{prettyContent}
     .post-meta
         .post-time #{prettyTimestamp}

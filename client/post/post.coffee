@@ -30,24 +30,20 @@ Template.post.helpers
         return result
         
 Template.post.events
-    'click .post-image': (event) ->
+    'click img.thumb': (event) ->
         toggleFullImage on, @number
-    'click .post-image-full': (event) ->
+    'click img.full': (event) ->
         toggleFullImage off, @number
         
 toggleFullImage = (status, number) ->
-    img = document.getElementById('img' + number)
-    imgf = document.getElementById('imgf' + number)
-    postBody = img.parentElement
+    thumb = document.getElementById('t' + number)
+    full = document.getElementById('i' + number)
+    postBody = thumb.parentElement
     postContainer = document.getElementById(number)
     if status
-        imgf.children[0].src = imgf.children[0].dataset.src
-        img.classList.add('absent')
-        imgf.classList.remove('absent')
-        postBody.classList.add('expanded-image')
-        postContainer.classList.add('expanded-image')
+        full.src = full.dataset.src
+        thumb.classList.add('absent')
+        full.classList.remove('absent')
     else
-        imgf.classList.add('absent')
-        img.classList.remove('absent')
-        postBody.classList.remove('expanded-image')
-        postContainer.classList.remove('expanded-image')
+        full.classList.add('absent')
+        thumb.classList.remove('absent')

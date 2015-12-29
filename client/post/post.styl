@@ -22,19 +22,19 @@
         flex 1 1 auto
         padding 16px
         display flex
+        flex-wrap wrap
         
         .post-image
+            flex 0 0 auto
             padding 0 8px 8px 0
             cursor zoom-in
             
-        .post-image-full
-            padding 0 8px 8px 0
-            cursor zoom-out
-            
-            img.scaled
-                width: 100%
+            img.full
+                width 100%
+                cursor zoom-out
             
         .post-text
+            flex 1 1 auto
             white-space pre-wrap
             font-size 1.6rem
             line-height 1.5
