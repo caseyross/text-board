@@ -1,8 +1,7 @@
 .post-container(id='#{number}')
     .post-header
-        button.post-reply-btn
-            .post-id #{number}
-            .reply-hint.absent(id='rh#{number}') >>
+        .post-id #{number}
+        .reply-hint.absent(id='rh#{number}') Reply
     .post-body
         if image
             .post-image(id='img#{number}')

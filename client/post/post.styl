@@ -1,5 +1,4 @@
 .post-container
-    position relative
     display flex
     max-width 960px
     
@@ -12,44 +11,30 @@
         margin 16px 16px 0 0
         color #999
         cursor pointer
-        transition all 0.1s ease-in-out
         
-        .post-reply-btn
-            padding 0
-            border 0
+        .reply-hint
             float right
-            color inherit
-            background inherit
-            font-size 1.6rem
-            font-family inherit
-            cursor pointer
-        
-            .reply-hint
-                float right
-                
-            .post-id
-                float right
+            
+        .post-id
+            float right
     
     .post-body
         flex 1 1 auto
         padding 16px
+        display flex
         
         .post-image
-            display inline-block
-            vertical-align top
             padding 0 8px 8px 0
-            cursor pointer
+            cursor zoom-in
             
         .post-image-full
             padding 0 8px 8px 0
-            cursor pointer
+            cursor zoom-out
             
             img.scaled
                 width: 100%
             
         .post-text
-            display inline-block
-            max-width bw
             white-space pre-wrap
             font-size 1.6rem
             line-height 1.5
@@ -69,14 +54,9 @@
         font-size 1.2rem
         
         .post-time
-            @media screen and (max-width: cw)
-                display inline
             color #999
         
         .post-forelinks
-            @media screen and (max-width: cw)
-                margin-left 16px
-                display inline
             
             a.forelink
                 font-size 1.6rem
@@ -85,7 +65,6 @@
                     background #ccc
                     
     a
-        color inherit
         text-decoration none
         font-family monospace
         background #f33

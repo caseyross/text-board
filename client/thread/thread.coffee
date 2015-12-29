@@ -1,5 +1,5 @@
 Template.thread.helpers
-    posts: -> Posts.find({})
+    posts: -> Posts.find()
     
 Template.thread.events
     'mouseenter .backlink': (event) ->
@@ -11,11 +11,6 @@ Template.thread.events
         togglePostOverlay 'left'
     'mouseleave .forelink': (event) ->
         togglePostOverlay off
-    'focus .post-reply-btn': (event) ->
-        toggleReplyHint on, @number
-        saveSelection()
-    'blur .post-reply-btn': (event) ->
-        toggleReplyHint off, @number
     'mouseenter .post-header': (event) ->
         toggleReplyHint on, @number
         saveSelection()
