@@ -1,52 +1,26 @@
-hcw = 32px
-hew = 16px
-hw = hcw + hew
-bw = 640px
-mw = 96px
-cw = hw + bw + mw
-
 .post-container
     position relative
-    @media screen and (max-width: cw)
-        width 90vw
-    @media screen and (min-width: cw)
-        width cw
-            
-    &.expanded-image
-        width: auto
+    display flex
+    max-width 960px
     
     ::selection
         color white
         background #f33
     
     .post-header
-        position absolute
-        top 0
-        bottom 0
-        width hcw
-        margin-left hew
-        margin-top 16px
-        display inline-block
-        vertical-align top
-        font-family monospace
+        flex 0 0 48px
+        margin 16px 16px 0 0
         color #999
         cursor pointer
         transition all 0.1s ease-in-out
-            
-        &:hover
-        &:focus
-            width hw
-            margin-left 0
-            color gray
-            // border-top 1px solid gray
         
         .post-reply-btn
-            padding 4px 0
+            padding 0
             border 0
             float right
             color inherit
             background inherit
-            font-size 1.4rem
+            font-size 1.6rem
             font-family inherit
             cursor pointer
         
@@ -57,23 +31,17 @@ cw = hw + bw + mw
                 float right
     
     .post-body
-        @media screen and (min-width: cw)
-            width bw
-        margin-left hw
-        margin-right mw
+        flex 1 1 auto
         padding 16px
-        display inline-block
-            
-        &.expanded-image
-            width: auto
         
         .post-image
             display inline-block
             vertical-align top
-            padding-top 3px
+            padding 0 8px 8px 0
             cursor pointer
             
         .post-image-full
+            padding 0 8px 8px 0
             cursor pointer
             
             img.scaled
@@ -85,13 +53,9 @@ cw = hw + bw + mw
             white-space pre-wrap
             font-size 1.6rem
             line-height 1.5
-        
+                
             a.backlink
                 font-size 2rem
-                font-family monospace
-                text-decoration none
-                background gray
-                color white
                 
                 &:hover
                     background #ccc
@@ -100,11 +64,8 @@ cw = hw + bw + mw
                 color #f33
         
     .post-meta
-        position absolute
-        top 0
-        right 0
-        width mw
-        padding-top 16px
+        flex 0 0 96px
+        padding 16px
         font-size 1.2rem
         
         .post-time
@@ -119,10 +80,13 @@ cw = hw + bw + mw
             
             a.forelink
                 font-size 1.6rem
-                font-family monospace
-                text-decoration none
-                background gray
-                color white
                 
                 &:hover
                     background #ccc
+                    
+    a
+        color inherit
+        text-decoration none
+        font-family monospace
+        background #f33
+        color white
