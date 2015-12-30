@@ -1,4 +1,4 @@
-# Status:
+# Status
 
 ## Thread things
 
@@ -27,3 +27,8 @@ Different boards: :x:
 Modding: :x:
 
 Mobile layout: :boom:
+
+# Installation
+
+1. Clone repo
+2. Setup Cloudinary config

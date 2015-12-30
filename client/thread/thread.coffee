@@ -59,11 +59,19 @@ Template.thread.events
         originalPost = document.getElementById(originalPostNumber)
         switch state
             when 'right'
-                overlay.style.top = (event.target.offsetParent.offsetTop + event.target.offsetTop + event.target.offsetHeight // 2 - originalPost.offsetHeight // 2) + 'px'
-                overlay.style.left = (event.target.offsetParent.offsetLeft + event.target.offsetLeft + 10 * event.target.innerText.length + 2) + 'px'
+                console.log event
+                top = event.target.offsetTop + event.target.offsetHeight // 2 - originalPost.offsetHeight // 2
+                left = event.target.offsetLeft + 10 * event.target.innerText.length + 2
+                overlay.style.top = top + 'px'
+                overlay.style.left = left + 'px'
+                overlay.style.right = ''
             when 'left'
-                overlay.style.top = (event.target.offsetParent.offsetParent.offsetTop + event.target.offsetTop + event.target.offsetHeight // 2 - originalPost.offsetHeight // 2) + 'px'
-                overlay.style.left = (event.pageX - event.offsetX - originalPost.offsetWidth - 8) + 'px'
+                top = event.target.offsetTop + event.target.offsetHeight // 2 - originalPost.offsetHeight // 2
+                right = document.body.offsetWidth - event.fromElement.offsetLeft + 8
+                top = 0 if top < 0
+                overlay.style.top = top + 'px'
+                overlay.style.right = right + 'px'
+                overlay.style.left = ''
         overlay.classList.remove 'absent'
 
 @toggleReplyHint = (state, number) ->
