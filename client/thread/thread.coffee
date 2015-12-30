@@ -59,9 +59,9 @@ Template.thread.events
         originalPost = document.getElementById(originalPostNumber)
         switch state
             when 'right'
-                console.log event
                 top = event.target.offsetTop + event.target.offsetHeight // 2 - originalPost.offsetHeight // 2
                 left = event.target.offsetLeft + 10 * event.target.innerText.length + 2
+                top = 0 if top < 0
                 overlay.style.top = top + 'px'
                 overlay.style.left = left + 'px'
                 overlay.style.right = ''

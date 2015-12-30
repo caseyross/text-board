@@ -1,4 +1,11 @@
 Template.new_thread.events
+    'change #file': (event) ->
+        fileName = event.target.value.split('\\').pop()
+        label = document.getElementById('L_file')
+        if fileName
+            label.innerHTML = fileName
+        else
+            label.innerHTML = 'Choose file'
     'submit form': (event) ->
         event.preventDefault()
         title = event.target.title.value

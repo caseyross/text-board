@@ -4,6 +4,7 @@
         .post-body
             form
                 textarea#comment(name='comment') #{comment}
+                label#L_file(for='file') Choose file
                 input#file(type='file' name='file')
                 input#submitPost(type='submit' value='Submit')
         .post-meta

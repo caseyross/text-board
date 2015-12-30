@@ -11,6 +11,13 @@ Template.new_post.events
         Session.set 'comment_pos', event.target.selectionStart
     'click #comment': (event) ->
         Session.set 'comment_pos', event.target.selectionStart
+    'change #file': (event) ->
+        fileName = event.target.value.split('\\').pop()
+        label = document.getElementById('L_file')
+        if fileName
+            label.innerHTML = fileName
+        else
+            label.innerHTML = 'Choose file'
     'submit form': (event) ->
         event.preventDefault()
         comment = event.target.comment.value
@@ -40,7 +47,8 @@ Template.new_post.events
         if result
             toggleFloatPanel off
             Session.set 'comment', ''
-            document.getElementById('file').value = ""
+            document.getElementById('file').value = ''
+            document.getElementById('L_file').innerHTML = 'Choose file'
         else
             console.log error
             # TODO: tell users about error

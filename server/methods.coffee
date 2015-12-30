@@ -48,12 +48,12 @@ Meteor.methods
                 replyIds: []
             # Mark replies to previous posts
             if repliedTo?
-                Meteor.call('insertReplies', tid, number, repliedTo, id)
+                Meteor.call('markReplies', tid, number, repliedTo, id)
             return id
         else
             throw new Meteor.Error 'incomplete-form'
 
-    insertReplies: (tid, number, repliedTo, id) ->
+    markReplies: (tid, number, repliedTo, id) ->
         repliedTo = repliedTo.map (x) -> parseInt(x.slice(2), 10)
         repliedTo = repliedTo.filter (x) -> 0 < x < number
         repliedTo = _.uniq(repliedTo)
