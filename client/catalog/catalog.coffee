@@ -2,5 +2,5 @@ Template.catalog.helpers
     threads: -> Threads.find()
     
 Template.catalog.events
-    'click .goto-new-thread-btn': (event) ->
+    'click #newThread': (event) ->
         FlowRouter.go '/new'

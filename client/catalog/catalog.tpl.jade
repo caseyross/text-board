@@ -1,7 +1,6 @@
 .thread-container
-    button.goto-new-thread-btn Start new thread
-hr
+    button#newThread Start new thread
 nav.thread-list
-        each threads
-            .thread-container
-                a(href='/t/#{_id}') #{title}
+    each threads
+        .thread-container
+            a(href='/t/#{_id}') #{title}
