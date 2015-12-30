@@ -18,7 +18,7 @@ Template.post.helpers
         safeContent = _.escape(@content)
         return safeContent.replace(replyRegex, insertBacklink).replace(quoteRegex, insertQuote)
     prettyTimestamp: ->
-        moment(@timestamp).fromNow()
+        moment(@timestamp).format 'h:mm A'
     prettyForelinks: ->
         result = ''
         for reply in @replies
