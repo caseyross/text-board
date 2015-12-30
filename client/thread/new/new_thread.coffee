@@ -1,9 +1,9 @@
 Template.new_thread.events
     'submit form': (event) ->
         event.preventDefault()
-        title = event.target.titleInput.value
-        firstPost = event.target.firstPostInput.value
-        files = event.target.fileInput.files
+        title = event.target.title.value
+        firstPost = event.target.firstPost.value
+        files = event.target.file.files
         if files.length > 0
             setThreadSubmitBtn 'uploading'
             # Possibly extendable to multiple images
