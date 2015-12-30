@@ -33,11 +33,11 @@ Template.new_thread.events
             setThreadSubmitBtn 'ready'
             
 @setThreadSubmitBtn = (state) ->
-    threadSubmitBtn = document.getElementById('threadSubmitBtn')
+    btn = document.getElementById('submitThread')
     switch state
         when 'ready'
-            threadSubmitBtn.disabled = false
-            threadSubmitBtn.value = 'Submit'
+            btn.disabled = false
+            btn.value = 'Submit'
         when 'uploading'
-            threadSubmitBtn.disabled = true
-            threadSubmitBtn.value = 'Uploading...'
+            btn.disabled = true
+            btn.value = 'Uploading...'

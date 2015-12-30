@@ -1,21 +1,20 @@
-Session.setDefault 'postInput', ''
-Session.setDefault 'postInputCursorPos', 0
+Session.setDefault 'comment', ''
+Session.setDefault 'comment_pos', 0
 
 Template.new_post.helpers
-    postInput: ->
-        Session.get 'postInput'
+    comment: ->
+        Session.get 'comment'
 
 Template.new_post.events
-    'input textarea': (event) ->
-        content = event.target.value
-        Session.set 'postInput', content
-        Session.set 'postInputCursorPos', event.target.selectionStart
-    'click textarea': (event) ->
-        Session.set 'postInputCursorPos', event.target.selectionStart
+    'input #comment': (event) ->
+        Session.set 'comment', event.target.value
+        Session.set 'comment_pos', event.target.selectionStart
+    'click #comment': (event) ->
+        Session.set 'comment_pos', event.target.selectionStart
     'submit form': (event) ->
         event.preventDefault()
-        content = event.target.textInput.value
-        files = event.target.fileInput.files
+        comment = event.target.comment.value
+        files = event.target.file.files
         if files.length > 0
             setPostSubmitBtn 'uploading'
             # Possibly extendable to multiple images
@@ -26,34 +25,33 @@ Template.new_post.events
                 public_id: image_id,
                 (error, result) ->
                     if result
-                        postReply(content, image_id)
+                        reply(comment, image_id)
                     else
                         # TODO: provide error feedback
                         console.log error
                         setPostSubmitBtn 'ready'
             )
         else
-            postReply(content, undefined)
+            reply(comment, undefined)
             
-@postReply = (content, image_id) ->
+@reply = (comment, image_id) ->
     # Theoretically the user could set parameters to whatever but I don't see a problem
-    Meteor.call 'postReply', FlowRouter.getParam('_id'), content, image_id, (error, result) ->
+    Meteor.call 'reply', FlowRouter.getParam('_id'), comment, image_id, (error, result) ->
         if result
             toggleFloatPanel off
-            Session.set 'postInput', ''
-            document.getElementById('postInput').value = ""
-            document.getElementById('postFileInput').value = ""
+            Session.set 'comment', ''
+            document.getElementById('file').value = ""
         else
             console.log error
             # TODO: tell users about error
         setPostSubmitBtn 'ready'
             
 @setPostSubmitBtn = (state) ->
-    postSubmitBtn = document.getElementById('postSubmitBtn')
+    btn = document.getElementById('submitPost')
     switch state
         when 'ready'
-            postSubmitBtn.disabled = false
-            postSubmitBtn.value = 'Submit'
+            btn.disabled = false
+            btn.value = 'Submit'
         when 'uploading'
-            postSubmitBtn.disabled = true
-            postSubmitBtn.value = 'Uploading...'
+            btn.disabled = true
+            btn.value = 'Uploading...'

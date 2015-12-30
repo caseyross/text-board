@@ -18,24 +18,24 @@ Template.thread.events
         toggleReplyHint off, @number
     'click .post-header': (event) ->
         # Show post input if it's not already visible
-        newPostPanelBottom = document.getElementById('newPostPanel').getBoundingClientRect().bottom
-        if newPostPanelBottom > window.innerHeight
+        bottom = document.getElementById('newPost').getBoundingClientRect().bottom
+        if bottom > window.innerHeight
             toggleFloatPanel on
-        document.getElementById('postInput').focus()
+        document.getElementById('comment').focus()
         # Insert markup for a reply
         # Save reply content and cursor position in session storage
-        replyLink = '>>'
-        replyLink += @number
-        replyLink += '\n'
-        input = Session.get 'postInput'
-        cursorPos = Session.get 'postInputCursorPos'
-        input = input[0...cursorPos] + replyLink + quotedSelection() + input[cursorPos..]
-        Session.set 'postInput', input
-        newCursorPos = cursorPos + replyLink.length
-        Session.set 'postInputCursorPos', newCursorPos
-    'click .cancel-floating-btn': (event) ->
+        backlink = '>>'
+        backlink += @number
+        backlink += '\n'
+        comment = Session.get 'comment'
+        pos = Session.get 'comment_pos'
+        newComment = comment[0...pos] + backlink + quotedSelection() + comment[pos..]
+        Session.set 'comment', newComment
+        newPos = pos + backlink.length
+        Session.set 'comment_pos', newPos
+    'click #cancelFloating': (event) ->
         toggleFloatPanel off
-        Session.set 'postInput', ''
+        Session.set 'comment', ''
 
 @selection = ''
 
@@ -83,12 +83,10 @@ Template.thread.events
         
 @toggleFloatPanel = (state) ->
     if state
-        document.getElementById('newPostPanel').classList.add 'floating'
-        document.getElementById('newPostPanelSpacer').classList.add 'invisible'
-        document.getElementById('newPostPanelSpacer').classList.remove 'absent'
-        document.getElementById('cancelFloatingBtn').classList.remove 'absent'
+        document.getElementById('newPost').classList.add 'floating'
+        document.getElementById('newPostSpacer').classList.remove 'absent'
+        document.getElementById('cancelFloating').classList.remove 'absent'
     else
-        document.getElementById('newPostPanel').classList.remove 'floating'
-        document.getElementById('newPostPanelSpacer').classList.add 'absent'
-        document.getElementById('newPostPanelSpacer').classList.remove 'invisible'
-        document.getElementById('cancelFloatingBtn').classList.add 'absent'
+        document.getElementById('newPost').classList.remove 'floating'
+        document.getElementById('newPostSpacer').classList.add 'absent'
+        document.getElementById('cancelFloating').classList.add 'absent'

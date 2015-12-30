@@ -21,7 +21,7 @@ Meteor.methods
         else
             throw new Meteor.Error 'incomplete-form'
 
-    postReply: (tid, content, image_id) ->
+    reply: (tid, content, image_id) ->
         content = content.trim()
         if content.length > 0 or image_id?
             # Increase post count
