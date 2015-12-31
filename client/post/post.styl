@@ -1,4 +1,4 @@
-.post-container
+.post
     display flex
     max-width 960px
     
@@ -6,8 +6,8 @@
         color white
         background #f33
     
-    .post-header
-        flex 0 0 48px
+    header
+        flex 0 0 96px
         margin 16px 16px 0 0
         display flex
         flex-flow column wrap
@@ -15,13 +15,13 @@
         color #999
         cursor pointer
     
-    .post-body
+    .body
         flex 1 1 auto
         padding 16px
         display flex
         flex-wrap wrap
         
-        .post-image
+        .image
             flex 0 0 auto
             padding 0 8px 8px 0
             cursor zoom-in
@@ -30,7 +30,7 @@
                 width 100%
                 cursor zoom-out
             
-        .post-text
+        .comment
             flex 1 1 auto
             white-space pre-wrap
             font-size 1.6rem
@@ -45,15 +45,12 @@
             .quote
                 color #f33
         
-    .post-meta
+    .meta
         flex 0 0 96px
         padding 16px
         font-size 1.2rem
         
-        .post-time
-            color #999
-        
-        .post-forelinks
+        .forelinks
             
             a.forelink
                 font-size 1.6rem

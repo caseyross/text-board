@@ -17,7 +17,9 @@ Template.post.helpers
             return result
         safeContent = _.escape(@content)
         return safeContent.replace(replyRegex, insertBacklink).replace(quoteRegex, insertQuote)
-    prettyTimestamp: ->
+    isoDatetime: ->
+        moment(@timestamp).toISOString()
+    prettyTime: ->
         moment(@timestamp).format 'h:mm A'
     prettyForelinks: ->
         result = ''
