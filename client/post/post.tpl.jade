@@ -1,6 +1,6 @@
 .post(id='#{number}')
     header
-        time(datetime='#{isoDatetime}') #{prettyTime}
+        time(datetime='#{isoDatetime}' title='#{prettyDatetime}') #{prettyTime}
     .body
         if image
             .image
@@ -10,9 +10,8 @@
                     )
                 img.full.absent(
                     id='i#{number}'
-                    data-src="{{c.url image quality='50' fetch_format='auto' width=760 crop='limit'}}"
+                    data-src="{{c.url image quality='50' fetch_format='auto' width=736 crop='limit'}}"
                     )
         .comment !{prettyComment}
     .options
-        button.reply(id='r#{number}') #{number}->
-    //     .forelinks !{prettyForelinks}
+        button.reply(id='r#{number}' title='Reply to this post') #{number}->

@@ -1,6 +1,6 @@
-.thread-container
-    button#newThread Start new thread
-nav.thread-list
+nav#options
+    button#newThread Create a thread
+nav#threads
     each threads
-        .thread-container
+        .thread
             a(href='/t/#{_id}') #{title}

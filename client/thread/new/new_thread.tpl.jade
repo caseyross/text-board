@@ -2,10 +2,11 @@
     .body
         form
             label(for='title') Title
-            input#title(type='text' name='title' autofocus)
+            input#title(type='text' name='title' placeholder='' autofocus)
             label(for='firstPost') First post
-            textarea#firstPost(name='firstPost')
+            textarea#firstPost(name='firstPost' placeholder='')
             .row
-                label#L_file(for='file') Choose file
-                input#file(type='file' name='file')
+                .file
+                    label#L_file(for='file') Choose file
+                    input#file(type='file' name='file')
                 input#submitThread(type='submit' value='Submit')

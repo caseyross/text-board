@@ -8,7 +8,7 @@
     
     header
         flex 0 0 96px
-        margin 16px 16px 0 0
+        padding 16px
         display flex
         flex-flow column wrap
         align-items flex-end
@@ -28,7 +28,7 @@
         
         .image
             flex 0 0 auto
-            padding 0 8px 8px 0
+            padding 6px 0
             cursor zoom-in
             
             img.full
@@ -51,19 +51,15 @@
                 color #f33
         
     .options
-        flex 0 0 96px
+        flex 0 0 144px
         padding 16px
         
-        .reply
-            
-        
-        .forelinks
-        
-            a.forelink
-                font-size 1.6rem
-                
-                &:hover
-                    background #ccc
+        button.reply
+            border 1px solid
+            border-radius 16px
+            padding 2px 16px
+            font-family monospace
+            cursor pointer
                     
     a
         font-family monospace

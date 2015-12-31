@@ -19,10 +19,10 @@ Template.post.helpers
         return safeComment.replace(replyRegex, insertBacklink).replace(quoteRegex, insertQuote)
     isoDatetime: ->
         moment(@timestamp).toISOString()
+    prettyDatetime: ->
+        moment(@timestamp).format 'dddd, MMMM Do, YYYY - h:mm.ss A'
     prettyTime: ->
         moment(@timestamp).format 'h:mm A'
-    prettySeconds: ->
-        moment(@timestamp).format 'ss.SSS'
     prettyForelinks: ->
         result = ''
         for reply in @replies
