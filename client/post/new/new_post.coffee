@@ -7,8 +7,18 @@ Template.new_post.helpers
 
 Template.new_post.events
     'input #comment': (event) ->
-        Session.set 'comment', event.target.value
-        Session.set 'comment_pos', event.target.selectionStart
+        textarea = event.target
+        comment = textarea.value
+        lines = comment.split('\n').length
+        textarea.rows = lines + 1
+        clientHeight = textarea.clientHeight
+        scrollHeight = textarea.scrollHeight
+        if clientHeight < scrollHeight
+            rowHeight = clientHeight / textarea.rows
+            rowsNeeded = scrollHeight // rowHeight + 1
+            textarea.rows = rowsNeeded
+        Session.set 'comment', comment
+        Session.set 'comment_pos', textarea.selectionStart
     'click #comment': (event) ->
         Session.set 'comment_pos', event.target.selectionStart
     'change #file': (event) ->
@@ -47,6 +57,7 @@ Template.new_post.events
         if result
             toggleFloatPanel off
             Session.set 'comment', ''
+            document.getElementById('comment').rows = 2
             document.getElementById('file').value = ''
             document.getElementById('L_file').innerHTML = 'Choose file'
         else
