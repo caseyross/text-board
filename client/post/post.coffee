@@ -1,6 +1,6 @@
 Template.post.helpers
-    prettyContent: ->
-        # Escape post content, then inject our HTML for unescaped rendering
+    prettyComment: ->
+        # Escape post comment, then inject our HTML for unescaped rendering
         replyRegex = new RegExp(/&gt;&gt;\d+/g)
         insertBacklink = (match) ->
             result = "<a href='#"
@@ -15,12 +15,14 @@ Template.post.helpers
             result += match
             result += '</span>'
             return result
-        safeContent = _.escape(@content)
-        return safeContent.replace(replyRegex, insertBacklink).replace(quoteRegex, insertQuote)
+        safeComment = _.escape(@comment)
+        return safeComment.replace(replyRegex, insertBacklink).replace(quoteRegex, insertQuote)
     isoDatetime: ->
         moment(@timestamp).toISOString()
     prettyTime: ->
         moment(@timestamp).format 'h:mm A'
+    prettySeconds: ->
+        moment(@timestamp).format 'ss.SSS'
     prettyForelinks: ->
         result = ''
         for reply in @replies

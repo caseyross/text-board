@@ -1,7 +1,6 @@
 .post(id='#{number}')
     header
         time(datetime='#{isoDatetime}') #{prettyTime}
-        .reply-hint.invisible(id='rh#{number}') Reply
     .body
         if image
             .image
@@ -13,6 +12,7 @@
                     id='i#{number}'
                     data-src="{{c.url image quality='50' fetch_format='auto' width=760 crop='limit'}}"
                     )
-        .comment !{prettyContent}
-    .meta
-        .forelinks !{prettyForelinks}
+        .comment !{prettyComment}
+    .options
+        button.reply(id='r#{number}') #{number}->
+    //     .forelinks !{prettyForelinks}

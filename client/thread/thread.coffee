@@ -11,12 +11,12 @@ Template.thread.events
         togglePostOverlay 'left'
     'mouseleave .forelink': (event) ->
         togglePostOverlay off
-    'mouseenter .post-header': (event) ->
-        toggleReplyHint on, @number
+    'mouseenter .reply': (event) ->
+        # toggleReplyHint on, @number
         saveSelection()
-    'mouseleave .post-header': (event) ->
-        toggleReplyHint off, @number
-    'click .post-header': (event) ->
+    # 'mouseleave .reply': (event) ->
+    #     toggleReplyHint off, @number
+    'click .reply': (event) ->
         # Show post input if it's not already visible
         bottom = document.getElementById('newPost').getBoundingClientRect().bottom
         if bottom > window.innerHeight

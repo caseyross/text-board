@@ -1,9 +1,9 @@
 Meteor.methods
 
-    postThread: (title, content, image_id) ->
+    postThread: (title, comment, image_id) ->
         title = title.trim()
-        content = content.trim()
-        if title.length > 0 and content.length > 0
+        comment = comment.trim()
+        if title.length > 0 and comment.length > 0
             tid = Threads.insert
                 title: title
                 postCount: 1
@@ -11,7 +11,7 @@ Meteor.methods
             Posts.insert
                 _tid: tid
                 number: 1
-                content: content
+                comment: comment
                 image: image_id
                 image_status: 'uploaded'
                 timestamp: +moment()
@@ -21,9 +21,9 @@ Meteor.methods
         else
             throw new Meteor.Error 'incomplete-form'
 
-    reply: (tid, content, image_id) ->
-        content = content.trim()
-        if content.length > 0 or image_id?
+    reply: (tid, comment, image_id) ->
+        comment = comment.trim()
+        if comment.length > 0 or image_id?
             # Increase post count
             thread = Threads.findAndModify
                 query:
@@ -35,12 +35,12 @@ Meteor.methods
             number = thread.postCount
             # Check for replies in post
             replyRegex = new RegExp(/>>\d+/g)
-            repliedTo = content.match replyRegex
+            repliedTo = comment.match replyRegex
             # Insert new post
             id = Posts.insert
                 _tid: tid
                 number: number
-                content: content
+                comment: comment
                 image: image_id
                 image_status: 'uploaded'
                 timestamp: +moment()
