@@ -40,7 +40,7 @@ Template.new_thread.events
         else
             postThread(title, firstPost, '')
             
-@postThread = (title, firstPost, image_id) ->
+postThread = (title, firstPost, image_id) ->
     Meteor.call 'postThread', title, firstPost, image_id, (error, result) ->
         if result
             newPath = '/t/' + result
@@ -50,7 +50,7 @@ Template.new_thread.events
             # TODO: tell users about error
             setThreadSubmitBtn 'ready'
             
-@setThreadSubmitBtn = (state) ->
+setThreadSubmitBtn = (state) ->
     btn = document.getElementById('submitThread')
     switch state
         when 'ready'

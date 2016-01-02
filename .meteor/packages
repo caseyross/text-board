@@ -9,7 +9,6 @@ stylus
 mquandalle:jade
 momentjs:moment
 fongandrew:find-and-modify
-stevezhu:lodash
 kadira:flow-router
 kadira:blaze-layout
 standard-minifiers
@@ -18,12 +17,13 @@ mobile-experience
 mongo
 blaze-html-templates
 session
-jquery
 tracker
 logging
 reload
 random
 ejson
-spacebars
 check
 lepozepo:cloudinary
+jquery
+meteorhacks:fast-render
+msavin:mongol

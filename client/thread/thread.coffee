@@ -7,15 +7,11 @@ Template.thread.events
     'mouseleave .backlink': (event) ->
         togglePostOverlay off
     'mouseenter .forelink': (event) ->
-        # TODO: Show on right for small-screen layout
         togglePostOverlay 'left'
     'mouseleave .forelink': (event) ->
         togglePostOverlay off
     'mouseenter .reply': (event) ->
-        # toggleReplyHint on, @number
         saveSelection()
-    # 'mouseleave .reply': (event) ->
-    #     toggleReplyHint off, @number
     'click .reply': (event) ->
         # Show post input if it's not already visible
         bottom = document.getElementById('newPost').getBoundingClientRect().bottom
@@ -37,18 +33,18 @@ Template.thread.events
         toggleFloatPanel off
         Session.set 'comment', ''
 
-@selection = ''
+selection = ''
 
-@saveSelection = ->
-    @selection = window.getSelection().toString()
+saveSelection = ->
+    selection = window.getSelection().toString()
     
-@quotedSelection = ->
+quotedSelection = ->
     if selection
         return selection.replace(/^/mg, '$&> ')
     else
         return ''
         
-@togglePostOverlay = (state) =>
+togglePostOverlay = (state) =>
     overlay = document.getElementById('postOverlay')
     if state == off
         overlay.classList.add 'absent'
@@ -74,7 +70,7 @@ Template.thread.events
                 overlay.style.left = ''
         overlay.classList.remove 'absent'
 
-@toggleReplyHint = (state, number) ->
+toggleReplyHint = (state, number) ->
     if state
         document.getElementById('rh' + number).classList.remove 'invisible'
     else

@@ -49,9 +49,9 @@ Template.new_post.events
                         setPostSubmitBtn 'ready'
             )
         else
-            reply(comment, undefined)
+            reply(comment, null)
             
-@reply = (comment, image_id) ->
+reply = (comment, image_id) ->
     # Theoretically the user could set parameters to whatever but I don't see a problem
     Meteor.call 'reply', FlowRouter.getParam('_id'), comment, image_id, (error, result) ->
         if result
@@ -65,7 +65,7 @@ Template.new_post.events
             # TODO: tell users about error
         setPostSubmitBtn 'ready'
             
-@setPostSubmitBtn = (state) ->
+setPostSubmitBtn = (state) ->
     btn = document.getElementById('submitPost')
     switch state
         when 'ready'

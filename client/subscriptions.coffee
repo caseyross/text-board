@@ -1,4 +1,6 @@
 Meteor.subscribe 'threads'
 
 Tracker.autorun ->
-    Meteor.subscribe 'posts', FlowRouter.getParam '_id'
+    tid = FlowRouter.getParam '_id'
+    if tid != undefined
+        Meteor.subscribe 'posts', tid
