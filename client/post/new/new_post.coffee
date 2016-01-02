@@ -53,7 +53,7 @@ Template.new_post.events
             
 reply = (comment, image_id) ->
     # Theoretically the user could set parameters to whatever but I don't see a problem
-    Meteor.call 'reply', FlowRouter.getParam('_id'), comment, image_id, (error, result) ->
+    Meteor.call 'submitPost', FlowRouter.getParam('_id'), comment, image_id, (error, result) ->
         if result
             toggleFloatPanel off
             Session.set 'comment', ''

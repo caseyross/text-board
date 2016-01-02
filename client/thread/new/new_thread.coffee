@@ -41,7 +41,7 @@ Template.new_thread.events
             postThread(title, firstPost, '')
             
 postThread = (title, firstPost, image_id) ->
-    Meteor.call 'postThread', title, firstPost, image_id, (error, result) ->
+    Meteor.call 'submitThread', title, firstPost, image_id, (error, result) ->
         if result
             newPath = '/t/' + result
             FlowRouter.go(newPath)
