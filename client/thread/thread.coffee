@@ -2,6 +2,10 @@ Template.thread.helpers
     posts: -> Posts.find()
     
 Template.thread.events
+    'mouseenter .post': (event) ->
+        event.target.lastChild.style.opacity = 1
+    'mouseleave .post': (event) ->
+        event.target.lastChild.style.opacity = 0
     'mouseenter .backlink': (event) ->
         togglePostOverlay 'right'
     'mouseleave .backlink': (event) ->
