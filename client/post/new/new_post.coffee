@@ -17,6 +17,7 @@ Template.new_post.events
             rowHeight = clientHeight / textarea.rows
             rowsNeeded = scrollHeight // rowHeight + 1
             textarea.rows = rowsNeeded
+        window.scrollTo(window.scrollX, document.body.scrollHeight) # TODO: don't scroll when floating
         Session.set 'comment', comment
         Session.set 'comment_pos', textarea.selectionStart
     'click #comment': (event) ->
