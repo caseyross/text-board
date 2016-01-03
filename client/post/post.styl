@@ -1,3 +1,5 @@
+@import '../mixins'
+
 .post
     display flex
     max-width 960px
@@ -57,11 +59,15 @@
         transition opacity 0.1s
         
         button.reply
-            border 1px solid
+            border 1px solid hsl(0,0,60)
             border-radius 16px
             padding 2px 16px
             font-family monospace
             cursor pointer
+            elevation 2px
+            
+            &:hover
+                elevation 6px
                     
     a
         font-family monospace
