@@ -2,10 +2,6 @@ Template.thread.helpers
     posts: -> Posts.find()
     
 Template.thread.events
-    'mouseenter .post': (event) ->
-        event.currentTarget.lastChild.style.opacity = 1
-    'mouseleave .post': (event) ->
-        event.currentTarget.lastChild.style.opacity = 0
     'mouseenter .backlink': (event) ->
         togglePostOverlay 'right'
     'mouseleave .backlink': (event) ->
@@ -60,7 +56,7 @@ togglePostOverlay = (state) =>
         switch state
             when 'right'
                 top = event.target.offsetTop + event.target.offsetHeight // 2 - originalPost.offsetHeight // 2
-                left = event.target.offsetLeft + 10 * event.target.innerText.length + 2
+                left = event.target.offsetLeft + event.target.offsetWidth + 8
                 top = 0 if top < 0
                 overlay.style.top = top + 'px'
                 overlay.style.left = left + 'px'

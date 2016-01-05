@@ -2,11 +2,20 @@
 
 .post
     display flex
-    max-width 960px
+    max-width 760px
     
     ::selection
         color white
         background #f33
+        
+    a
+    button
+        margin-top 6px
+        padding 2px 16px
+        background-color #eee
+        color #999
+        font-family monospace
+        cursor pointer
     
     header
         flex 0 0 96px
@@ -25,51 +34,37 @@
     .body
         flex 1 1 auto
         padding 16px
-        display flex
-        flex-wrap wrap
         
-        .image
-            flex 0 0 auto
-            padding 6px 0
+        figure
+            margin 6px 0
+            margin-bottom 12px
+            background #eee
             cursor zoom-in
+            
+            .thumb
+                display flex
+                align-items center
+                
+                figcaption
+                    flex 1 1 auto
+                    padding-left 16px
+                    display inline-block
+                    color #999
             
             img.full
                 width 100%
                 cursor zoom-out
             
         .comment
-            flex 1 1 auto
             white-space pre-wrap
             font-size 1.6rem
             line-height 1.5
                 
-            a.backlink
-                font-size 2rem
-                
-                &:hover
-                    background #ccc
-                    
-            .quote
-                color #f33
+            blockquote
+                margin 4px 0
+                padding-left 8px
+                border-left 4px solid #f33
         
     .options
-        flex 0 0 144px
+        flex 0 0 96px
         padding 16px
-        opacity 0
-        transition opacity 0.1s
-        
-        button.reply
-            border 1px solid hsl(0,0,60)
-            border-radius 16px
-            padding 2px 16px
-            font-family monospace
-            cursor pointer
-            elevation 2px
-            
-            &:hover
-                elevation 6px
-                    
-    a
-        font-family monospace
-        background #f33
-        color white

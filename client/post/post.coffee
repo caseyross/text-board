@@ -11,9 +11,9 @@ Template.post.helpers
             return result
         quoteRegex = new RegExp(/^&gt;.*/mg)
         insertQuote = (match) ->
-            result = "<span class='quote'>"
+            result = "<blockquote>"
             result += match
-            result += '</span>'
+            result += '</blockquote>'
             return result
         safeComment = _.escape(@comment)
         return safeComment.replace(replyRegex, insertBacklink).replace(quoteRegex, insertQuote)
@@ -34,7 +34,7 @@ Template.post.helpers
         return result
         
 Template.post.events
-    'click img.thumb': (event) ->
+    'click .thumb': (event) ->
         toggleFullImage on, @number
     'click img.full': (event) ->
         toggleFullImage off, @number
