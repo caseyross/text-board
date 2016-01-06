@@ -1,15 +1,4 @@
 Template.new_thread.events
-    'input #firstPost': (event) ->
-        textarea = event.target
-        comment = textarea.value
-        lines = comment.split('\n').length
-        textarea.rows = lines + 1
-        clientHeight = textarea.clientHeight
-        scrollHeight = textarea.scrollHeight
-        if clientHeight < scrollHeight
-            rowHeight = clientHeight / textarea.rows
-            rowsNeeded = scrollHeight // rowHeight + 1
-            textarea.rows = rowsNeeded
     'change #file': (event) ->
         fileName = event.target.value.split('\\').pop()
         label = document.getElementById('L_file')

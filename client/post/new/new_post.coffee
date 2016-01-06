@@ -9,14 +9,7 @@ Template.new_post.events
     'input #comment': (event) ->
         textarea = event.target
         comment = textarea.value
-        lines = comment.split('\n').length
-        textarea.rows = lines + 1
-        clientHeight = textarea.clientHeight
-        scrollHeight = textarea.scrollHeight
-        if clientHeight < scrollHeight
-            rowHeight = clientHeight / textarea.rows
-            rowsNeeded = scrollHeight // rowHeight + 1
-            textarea.rows = rowsNeeded
+        document.getElementById('commentMirror').innerHTML = comment
         window.scrollTo(window.scrollX, document.body.scrollHeight) # TODO: don't scroll when floating
         Session.set 'comment', comment
         Session.set 'comment_pos', textarea.selectionStart

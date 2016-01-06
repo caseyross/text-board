@@ -2,7 +2,11 @@
     header
     .body
         form
-            textarea#comment(name='comment' placeholder='Write a comment...') #{comment}
+            .autosize
+                pre
+                    span#commentMirror
+                    br
+                textarea#comment(name='comment' placeholder='Write a comment...') #{comment}
             .row
                 .file
                     label#L_file(for='file') Choose file
