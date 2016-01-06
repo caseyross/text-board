@@ -1,5 +1,5 @@
 Template.thread.helpers
-    posts: -> Posts.find()
+    posts: -> Posts.find({}, {sort: {'number': 1}})
     
 Template.thread.events
     'mouseenter .backlink': (event) ->
