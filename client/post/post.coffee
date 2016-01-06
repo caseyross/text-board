@@ -9,7 +9,7 @@ Template.post.helpers
             result += match
             result += '</a>'
             return result
-        quoteRegex = new RegExp(/^&gt;.*/mg)
+        quoteRegex = new RegExp(/(^&gt;.*\n?)+/mg)
         insertQuote = (match) ->
             result = "<blockquote>"
             result += match
