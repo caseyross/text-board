@@ -11,8 +11,9 @@ Template.post.helpers
             return result
         quoteRegex = new RegExp(/(^&gt;.*\n?)+/mg)
         insertQuote = (match) ->
+            quoteBracketsRegex = new RegExp(/^&gt;\s/mg)
             result = "<blockquote>"
-            result += match
+            result += match.replace(quoteBracketsRegex, '')
             result += '</blockquote>'
             return result
         safeComment = _.escape(@comment)
