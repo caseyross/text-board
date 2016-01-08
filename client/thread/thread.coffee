@@ -48,7 +48,7 @@ togglePostOverlay = (state) =>
     overlay = document.getElementById('postOverlay')
     if state == off
         overlay.classList.add 'absent'
-        Session.set 'post_overlay', undefined
+        Session.set 'post_overlay', null
     else
         originalPostNumber = event.target.hash[1..]
         Session.set 'post_overlay', originalPostNumber
