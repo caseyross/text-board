@@ -13,9 +13,14 @@
         margin-top 4px
         padding 2px 16px
         background hsla(0,0,0,0.1)
-        color hsla(0,0,0,0.7)
-        font-family monospace
-        cursor pointer
+        color hsla(0,0,0,0.5)
+        font 600 1.2rem 'Source Code Pro', monospace
+        border-left 4px solid #f33
+        
+        &:hover
+        &:focus
+            background #f33
+            color white
     
     header
         flex 0 0 @min-width
@@ -24,7 +29,8 @@
         display flex
         flex-flow column wrap
         align-items flex-end
-        color hsla(0,0,0,0.6)
+        color hsla(0,0,0,0.4)
+        font-weight 600
         
         time
             font-size 1.4rem
@@ -47,6 +53,9 @@
                     flex 1 1 auto
                     padding-left 16px
                     display inline-block
+                    color hsla(0,0,0,0.4)
+                    font-size 1.6rem
+                    font-weight 600
             
             img.full
                 width 100%
@@ -54,7 +63,6 @@
             
         .comment
             white-space pre-wrap
-            font 1.6rem/1.5
                 
             blockquote
                 margin 4px 0
