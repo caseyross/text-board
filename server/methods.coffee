@@ -16,20 +16,32 @@ Meteor.methods
             throw new Meteor.Error 'incomplete-form'
 
 addThread = (title, comment, image_id) ->
+    timestamp = +moment()
     tid = Threads.insert
         title: title
         postCount: 1
-        timestamp: +moment()
+        created: timestamp
+        modified: timestamp
+    Posts.insert
+        _tid: tid
+        number: 0
+        special: 'title'
+        comment: title
+        image: null
+        timestamp: timestamp
+        replies: null
     Posts.insert
         _tid: tid
         number: 1
+        special: null
         comment: comment
         image: image_id
-        timestamp: +moment()
+        timestamp: timestamp
         replies: []
     return tid
     
 addPost = (tid, comment, image_id) ->
+    timestamp = +moment()
     # Increase post count
     thread = Threads.findAndModify
         query:
@@ -37,8 +49,18 @@ addPost = (tid, comment, image_id) ->
         update:
             $inc:
                 postCount: 1
-        new: true
-    number = thread.postCount
+            $set:
+                modified: timestamp
+    number = thread.postCount + 1
+    if moment(thread.modified).hour() != moment(timestamp).hour()
+        Posts.insert
+            _tid: tid
+            number: number - 0.5
+            special: 'date'
+            comment: moment(thread.modified).format 'dddd, MMMM Do, YYYY - h:mm A'
+            image: null
+            timestamp: timestamp
+            replies: null
     # Check for replies in post
     replyRegex = new RegExp(/>>\d+/g)
     repliedTo = comment.match replyRegex
@@ -46,9 +68,10 @@ addPost = (tid, comment, image_id) ->
     id = Posts.insert
         _tid: tid
         number: number
+        special: null
         comment: comment
         image: image_id
-        timestamp: +moment()
+        timestamp: timestamp
         replies: []
     # Mark replies to previous posts
     if repliedTo?

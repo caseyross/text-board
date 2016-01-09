@@ -1,19 +1,6 @@
-li.post(id='#{number}')
-    header
-        time(datetime='#{isoDatetime}' title='#{prettyDatetime}') #{prettyTime}
-    .body
-        if image
-            figure
-                .thumb(id='t#{number}')
-                    img(
-                        src="{{c.url image quality='50' fetch_format='auto' width=80 height=80 crop='limit'}}"
-                        )
-                    figcaption Some details about the image
-                img.full.absent(
-                    id='i#{number}'
-                    data-src="{{c.url image quality='50' fetch_format='auto' width=536 crop='limit'}}"
-                    )
-        .comment !{prettyComment}
-    .options
-        button.reply(id='r#{number}' title='Reply to this post') #{number}->
-        !{prettyForelinks}
+if isTitle
+    +title_post
+else if isDate
+    +date_post
+else
+    +normal_post
