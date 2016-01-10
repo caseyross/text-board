@@ -20,8 +20,8 @@ Template.normal_post.helpers
         return safeComment.replace(replyRegex, insertBacklink).replace(quoteRegex, insertQuote)
     prettyImageName: ->
         name = @image.name
-        if name.length > 27
-            return name.substring(0, 24) + '...'
+        if name.length > 35
+            return name.substring(0, 32) + '...'
         return name
     prettyImageDimensions: ->
         return @image.width + ' × ' + @image.height

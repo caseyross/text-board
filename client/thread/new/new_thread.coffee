@@ -9,7 +9,7 @@ Template.new_thread.events
         if fileName
             label.innerHTML = fileName
         else
-            label.innerHTML = 'Choose file'
+            label.innerHTML = 'File...'
         validate()
     'submit form': (event) ->
         event.preventDefault()
