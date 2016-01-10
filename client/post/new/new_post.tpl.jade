@@ -9,9 +9,9 @@
                 textarea#comment(name='comment' placeholder='Write a comment...') #{comment}
             .row
                 .file
-                    label#L_file(for='file') Choose file
+                    label.btn#L_file(for='file') File...
                     input#file(type='file' name='file')
-                input#submitPost(type='submit' value='Submit')
+                input#submitPost(disabled type='submit' value='Submit')
     .options
-        button#cancelFloating.absent X
+        button#cancelFloating.absent Close
 #newPostSpacer.absent.invisible

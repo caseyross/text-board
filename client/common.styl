@@ -24,6 +24,31 @@ html
             
         button
             cursor pointer
+        
+        button
+        input[type=submit]
+        .btn
+        .forelink
+        .backlink
+            background hsla(0,0,0,0.1)
+            color hsla(0,0,0,0.5)
+            font-family 'Source Code Pro', monospace
+            font-weight 600
+            border-left 4px solid #f33
+            
+            &:hover
+            &:focus
+                background #f33
+                color white
+                
+            &:disabled
+                border-color inherit
+                
+                &:hover
+                &:focus
+                    background @background
+                    color @color
+                    text-decoration line-through
 
         .absent
             display none !important

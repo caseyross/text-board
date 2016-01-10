@@ -11,6 +11,7 @@ Template.new_post.events
         comment = textarea.value
         document.getElementById('commentMirror').innerHTML = comment
         window.scrollTo(window.scrollX, document.body.scrollHeight) # TODO: don't scroll when floating
+        validate()
         Session.set 'comment', comment
         Session.set 'comment_pos', textarea.selectionStart
     'click #comment': (event) ->
@@ -22,6 +23,7 @@ Template.new_post.events
             label.innerHTML = fileName
         else
             label.innerHTML = 'Choose file'
+        validate()
     'submit form': (event) ->
         event.preventDefault()
         comment = event.target.comment.value
@@ -52,13 +54,35 @@ Template.new_post.events
                             else
                                 # TODO: provide error feedback
                                 console.log error
-                                setPostSubmitBtn 'ready'
+                                validate()
                     )
             fr.onerror = (event) ->
                 console.log fr.error
-                setPostSubmitBtn 'ready'
+                validate()
         else
             reply(comment, null)
+            validate()
+            
+validate = () ->
+    wroteComment = document.getElementById('comment').value.length > 0
+    choseFile = document.getElementById('file').files.length > 0
+    if wroteComment || choseFile
+        setPostSubmitBtn 'ready'
+    else
+        setPostSubmitBtn 'locked'
+            
+setPostSubmitBtn = (state) ->
+    btn = document.getElementById('submitPost')
+    switch state
+        when 'locked'
+            btn.disabled = true
+            btn.value = 'Submit'
+        when 'ready'
+            btn.disabled = false
+            btn.value = 'Submit'
+        when 'uploading'
+            btn.disabled = true
+            btn.value = 'Uploading...'
             
 reply = (comment, image) ->
     Meteor.call 'submitPost', FlowRouter.getParam('_id'), comment, image, (error, result) ->
@@ -71,14 +95,4 @@ reply = (comment, image) ->
         else
             console.log error
             # TODO: tell users about error
-        setPostSubmitBtn 'ready'
-            
-setPostSubmitBtn = (state) ->
-    btn = document.getElementById('submitPost')
-    switch state
-        when 'ready'
-            btn.disabled = false
-            btn.value = 'Submit'
-        when 'uploading'
-            btn.disabled = true
-            btn.value = 'Uploading...'
+        validate()

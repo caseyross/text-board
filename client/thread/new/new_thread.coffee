@@ -1,4 +1,8 @@
 Template.new_thread.events
+    'input #title': (event) ->
+        validate()
+    'input #firstPost': (event) ->
+        validate()
     'change #file': (event) ->
         fileName = event.target.value.split('\\').pop()
         label = document.getElementById('L_file')
@@ -6,6 +10,7 @@ Template.new_thread.events
             label.innerHTML = fileName
         else
             label.innerHTML = 'Choose file'
+        validate()
     'submit form': (event) ->
         event.preventDefault()
         title = event.target.title.value
@@ -37,11 +42,11 @@ Template.new_thread.events
                             else
                                 # TODO: provide error feedback
                                 console.log error
-                                setThreadSubmitBtn 'ready'
+                                validate()
                     )
             fr.onerror = (event) ->
                 console.log fr.error
-                setThreadSubmitBtn 'ready'
+                validate()
         else
             postThread(title, firstPost, '')
             
@@ -53,11 +58,25 @@ postThread = (title, firstPost, image_id) ->
         else
             console.log error
             # TODO: tell users about error
-            setThreadSubmitBtn 'ready'
+            validate()
+            
+validate = () ->
+    console.log 'validating...'
+    wroteTitle = document.getElementById('title').value.length > 0
+    wrotePost = document.getElementById('firstPost').value.length > 0
+    choseFile = document.getElementById('file').files.length > 0
+    console.log 'title:', wroteTitle, 'post:', wrotePost, 'file:', choseFile
+    if wroteTitle && (wrotePost || choseFile)
+        setThreadSubmitBtn 'ready'
+    else
+        setThreadSubmitBtn 'locked'
             
 setThreadSubmitBtn = (state) ->
     btn = document.getElementById('submitThread')
     switch state
+        when 'locked'
+            btn.disabled = true
+            btn.value = 'Submit'
         when 'ready'
             btn.disabled = false
             btn.value = 'Submit'
