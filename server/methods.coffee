@@ -43,6 +43,16 @@ addThread = (title, comment, image, ip_address) ->
         timestamp: timestamp
         replies: []
         ip_address: ip_address
+    # Update user's info
+    Users.findAndModify
+        query:
+            ip_address: ip_address
+        update:
+            $inc:
+                rep: 1
+            $set:
+                lastPosted: timestamp
+        upsert: true
     return tid
     
 addPost = (tid, comment, image, ip_address) ->
@@ -73,6 +83,16 @@ addPost = (tid, comment, image, ip_address) ->
     # Mark replies to previous posts
     if repliedTo?
         markReplies(tid, number, repliedTo, id)
+    # Update user's info
+    Users.findAndModify
+        query:
+            ip_address: ip_address
+        update:
+            $inc:
+                rep: 1
+            $set:
+                lastPosted: timestamp
+        upsert: true
     return id
 
 markReplies = (tid, number, repliedTo, id) ->
