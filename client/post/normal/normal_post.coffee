@@ -18,6 +18,13 @@ Template.normal_post.helpers
             return result
         safeComment = _.escape(@comment)
         return safeComment.replace(replyRegex, insertBacklink).replace(quoteRegex, insertQuote)
+    prettyImageName: ->
+        name = @image.name
+        if name.length > 27
+            return name.substring(0, 24) + '...'
+        return name
+    prettyImageDimensions: ->
+        return @image.width + ' × ' + @image.height
     isoDatetime: ->
         moment(@timestamp).toISOString()
     prettyDatetime: ->
