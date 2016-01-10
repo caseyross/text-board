@@ -29,25 +29,39 @@ Template.new_post.events
         if files.length > 0
             setPostSubmitBtn 'uploading'
             # Possibly extendable to multiple images
-            image_id = Random.id()
-            # TODO: may want to eagerly create full-size version
-            Cloudinary.upload(
-                files,
-                public_id: image_id,
-                (error, result) ->
-                    if result
-                        reply(comment, image_id)
-                    else
-                        # TODO: provide error feedback
-                        console.log error
-                        setPostSubmitBtn 'ready'
-            )
+            image = {
+                id: Random.id()
+            }
+            # TODO: Review upload flow and hopefully flatten callbacks
+            img = new Image()
+            fr = new FileReader()
+            fr.readAsDataURL(files[0])
+            fr.onload = (event) ->
+                img.src = fr.result
+                img.onload = () ->
+                    image.name = files[0].name
+                    image.size = files[0].size
+                    image.height = img.height
+                    image.width = img.width
+                    Cloudinary.upload(
+                        files,
+                        public_id: image.id,
+                        (error, result) ->
+                            if result
+                                reply(comment, image)
+                            else
+                                # TODO: provide error feedback
+                                console.log error
+                                setPostSubmitBtn 'ready'
+                    )
+            fr.onerror = (event) ->
+                console.log fr.error
+                setPostSubmitBtn 'ready'
         else
             reply(comment, null)
             
-reply = (comment, image_id) ->
-    # Theoretically the user could set parameters to whatever but I don't see a problem
-    Meteor.call 'submitPost', FlowRouter.getParam('_id'), comment, image_id, (error, result) ->
+reply = (comment, image) ->
+    Meteor.call 'submitPost', FlowRouter.getParam('_id'), comment, image, (error, result) ->
         if result
             toggleFloatPanel off
             Session.set 'comment', ''

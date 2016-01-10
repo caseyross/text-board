@@ -14,18 +14,34 @@ Template.new_thread.events
         if files.length > 0
             setThreadSubmitBtn 'uploading'
             # Possibly extendable to multiple images
-            image_id = Random.id()
-            Cloudinary.upload(
-                files,
-                public_id: image_id,
-                (error, result) ->
-                    if result
-                        postThread(title, firstPost, image_id)
-                    else
-                        # TODO: provide error feedback
-                        console.log error
-                        setThreadSubmitBtn 'ready'
-            )
+            image = {
+                id: Random.id()
+            }
+            # TODO: Review upload flow and hopefully flatten callbacks
+            img = new Image()
+            fr = new FileReader()
+            fr.readAsDataURL(files[0])
+            fr.onload = (event) ->
+                img.src = fr.result
+                img.onload = () ->
+                    image.name = files[0].name
+                    image.size = files[0].size
+                    image.height = img.height
+                    image.width = img.width
+                    Cloudinary.upload(
+                        files,
+                        public_id: image.id,
+                        (error, result) ->
+                            if result
+                                postThread(title, firstPost, image)
+                            else
+                                # TODO: provide error feedback
+                                console.log error
+                                setThreadSubmitBtn 'ready'
+                    )
+            fr.onerror = (event) ->
+                console.log fr.error
+                setThreadSubmitBtn 'ready'
         else
             postThread(title, firstPost, '')
             

@@ -1,23 +1,23 @@
 Meteor.methods
 
-    submitPost: (tid, comment, image_id) ->
+    submitPost: (tid, comment, image) ->
         ip_address = @connection.clientAddress
         comment = comment.trim()
-        if comment.length > 0 or image_id?
-            addPost(tid, comment, image_id, ip_address)
+        if comment.length > 0 or image?
+            addPost(tid, comment, image, ip_address)
         else
             throw new Meteor.Error 'incomplete-form'
 
-    submitThread: (title, comment, image_id) ->
+    submitThread: (title, comment, image) ->
         ip_address = @connection.clientAddress
         title = title.trim()
         comment = comment.trim()
         if title.length > 0 and comment.length > 0
-            addThread(title, comment, image_id, ip_address)
+            addThread(title, comment, image, ip_address)
         else
             throw new Meteor.Error 'incomplete-form'
 
-addThread = (title, comment, image_id, ip_address) ->
+addThread = (title, comment, image, ip_address) ->
     timestamp = +moment()
     tid = Threads.insert
         title: title
@@ -39,13 +39,13 @@ addThread = (title, comment, image_id, ip_address) ->
         number: 1
         special: null
         comment: comment
-        image: image_id
+        image: image
         timestamp: timestamp
         replies: []
         ip_address: ip_address
     return tid
     
-addPost = (tid, comment, image_id, ip_address) ->
+addPost = (tid, comment, image, ip_address) ->
     timestamp = +moment()
     # Increase post count and set time of modification
     thread = Threads.findAndModify
@@ -57,16 +57,6 @@ addPost = (tid, comment, image_id, ip_address) ->
             $set:
                 modified: timestamp
     number = thread.postCount + 1
-    # Check for need to make a new date post (TODO: how does this work with time zones?)
-    if moment(thread.modified).date() != moment(timestamp).date()
-        Posts.insert
-            _tid: tid
-            number: number - 0.5
-            special: 'date'
-            comment: moment(thread.modified).format 'dddd, MMMM Do, YYYY'
-            image: null
-            timestamp: timestamp
-            replies: null
     # Check for replies in post
     replyRegex = new RegExp(/>>\d+/g)
     repliedTo = comment.match replyRegex
@@ -76,7 +66,7 @@ addPost = (tid, comment, image_id, ip_address) ->
         number: number
         special: null
         comment: comment
-        image: image_id
+        image: image
         timestamp: timestamp
         replies: []
         ip_address: ip_address
