@@ -30,7 +30,13 @@ Template.normal_post.helpers
     prettyDatetime: ->
         moment(@timestamp).format 'dddd, MMMM Do, YYYY - h:mm:ss A'
     prettyTime: ->
-        moment(@timestamp).format 'h:mm A'
+        time = moment(@timestamp)
+        now = moment()
+        if now.diff(time, 'days') < 1
+            return time.format 'h:mm A'
+        if now.diff(time, 'weeks') < 1
+            return time.format 'ddd, h:mm A'
+        return time.format 'MMM D, YYYY'
     prettyForelinks: ->
         result = ''
         for reply in @replies
