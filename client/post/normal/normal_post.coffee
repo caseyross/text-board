@@ -32,9 +32,10 @@ Template.normal_post.helpers
     prettyTime: ->
         time = moment(@timestamp)
         now = moment()
-        if now.diff(time, 'days') < 1
+        console.log now.date(), time.date()
+        if time.isSame(now, 'day')
             return time.format 'h:mm A'
-        if now.diff(time, 'weeks') < 1
+        if now.date() - time.date() < 7
             return time.format 'ddd, h:mm A'
         return time.format 'MMM D, YYYY'
     prettyForelinks: ->
