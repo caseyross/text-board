@@ -20,8 +20,8 @@ Template.normal_post.helpers
         return safeComment.replace(replyRegex, insertBacklink).replace(quoteRegex, insertQuote)
     prettyImageName: ->
         name = @image.name
-        if name.length > 35
-            return name.substring(0, 32) + '...'
+        if name.length > 255
+            return name.substring(0, 255) + '...'
         return name
     prettyImageDimensions: ->
         return @image.width + ' × ' + @image.height
@@ -32,11 +32,10 @@ Template.normal_post.helpers
     prettyTime: ->
         time = moment(@timestamp)
         now = moment()
-        console.log now.date(), time.date()
         if time.isSame(now, 'day')
             return time.format 'h:mm A'
         if now.date() - time.date() < 7
-            return time.format 'ddd, h:mm A'
+            return time.format 'ddd h:mm A'
         return time.format 'MMM D, YYYY'
     prettyForelinks: ->
         result = ''
