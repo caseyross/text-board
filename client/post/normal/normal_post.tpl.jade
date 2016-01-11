@@ -9,11 +9,12 @@ li.post(id='#{number}')
                         src="{{c.url image.id quality='50' fetch_format='auto' width=80 height=80 crop='limit'}}"
                         )
                     figcaption #{prettyImageName}
-                img.full.absent(
-                    id='i#{number}'
-                    data-src="{{c.url image.id quality='50' fetch_format='auto' width=536 crop='limit'}}"
-                    )
-                // a.btn(href="{{c.url image.id fetch_format='auto'}}" target='_blank') Full (#{prettyImageDimensions})
+                .full.absent(id='f#{number}')
+                    a.btn(href="{{c.url image.id fetch_format='auto'}}" target='_blank') View full size (#{prettyImageDimensions})
+                    img(
+                        id='i#{number}'
+                        data-src="{{c.url image.id quality='50' fetch_format='auto' width=536 crop='limit'}}"
+                        )
         .comment !{prettyComment}
     .options
         button.reply(id='r#{number}' title='Reply to this post') Reply

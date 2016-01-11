@@ -50,16 +50,17 @@ Template.normal_post.helpers
 Template.normal_post.events
     'click .thumb': (event) ->
         toggleFullImage on, @number
-    'click img.full': (event) ->
+    'click .full': (event) ->
         toggleFullImage off, @number
         
 toggleFullImage = (status, number) ->
     thumb = document.getElementById('t' + number)
-    full = document.getElementById('i' + number)
+    full = document.getElementById('f' + number)
+    fullImage = document.getElementById('i' + number)
     postBody = thumb.parentElement
     postContainer = document.getElementById(number)
     if status
-        full.src = full.dataset.src
+        fullImage.src = fullImage.dataset.src
         thumb.classList.add('absent')
         full.classList.remove('absent')
     else
