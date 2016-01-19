@@ -17,7 +17,6 @@ Template.thread.events
         bottom = document.getElementById('newPost').getBoundingClientRect().bottom
         if bottom > window.innerHeight
             toggleFloatPanel on
-        document.getElementById('comment').focus()
         # Insert markup for a reply
         # Save reply content and cursor position in session storage
         backlink = '>>'
@@ -26,9 +25,11 @@ Template.thread.events
         comment = Session.get 'comment'
         pos = Session.get 'comment_pos'
         newComment = comment[0...pos] + backlink + quotedSelection() + comment[pos..]
+        document.getElementById('commentMirror').innerHTML = newComment
         Session.set 'comment', newComment
         newPos = pos + backlink.length
         Session.set 'comment_pos', newPos
+        document.getElementById('comment').focus()
     'click #cancelFloating': (event) ->
         toggleFloatPanel off
         Session.set 'comment', ''

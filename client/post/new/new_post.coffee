@@ -22,7 +22,7 @@ Template.new_post.events
         if fileName
             label.innerHTML = fileName
         else
-            label.innerHTML = 'File...'
+            label.innerHTML = '➕'
         validate()
     'submit form': (event) ->
         event.preventDefault()
@@ -91,7 +91,7 @@ reply = (comment, image) ->
             Session.set 'comment', ''
             document.getElementById('comment').rows = 2
             document.getElementById('file').value = ''
-            document.getElementById('L_file').innerHTML = 'Choose file'
+            document.getElementById('L_file').innerHTML = '➕'
         else
             console.log error
             # TODO: tell users about error
