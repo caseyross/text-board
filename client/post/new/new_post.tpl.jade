@@ -1,17 +1,16 @@
-.post#newPost
-    header
-    .body
-        form
+form
+    .post#newPost
+        header
+            .file
+                input#file(type='file' name='file')
+                label.btn#L_file(for='file') ➕
+        .body
             .autosize
                 pre
                     span#commentMirror
                     br
                 textarea#comment(name='comment' placeholder='Write a comment...') #{comment}
-            .row
-                .file
-                    input#file(type='file' name='file')
-                    label.btn#L_file(for='file') File...
-                input#submitPost(disabled type='submit' value='Submit')
-    .options
-        button#cancelFloating.absent Close
+        .options
+            input#submitPost(disabled type='submit' value='Submit')
+            button#cancelFloating.absent Close
 #newPostSpacer.absent.invisible

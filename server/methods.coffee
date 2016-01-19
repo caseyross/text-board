@@ -1,21 +1,78 @@
 Meteor.methods
 
     submitPost: (tid, comment, image) ->
-        ip_address = @connection.clientAddress
+        
+        #-- tid
+        # HAS CORRECT TYPE
+        check tid, String
+        # CORRECT LENGTH
+        check tid, Match.Where (x) ->
+            x.length == 17
+        
+        #-- comment
+        # HAS CORRECT TYPE
+        check comment, String
+        # NOT EMPTY
         comment = comment.trim()
-        if comment.length > 0 or image?
-            addPost(tid, comment, image, ip_address)
-        else
-            throw new Meteor.Error 'incomplete-form'
+        check comment, Match.Where (x) ->
+            x.length > 0
+        # NOT TOO LONG
+        check comment, Match.Where (x) ->
+            x.length < 65536
+        
+        #-- image
+        # HAS CORRECT TYPE
+        if image?
+            check image, {
+                id, String
+                name, String
+                size, Number
+                height, Number
+                width, Number
+            }
+        # TODO: validate all fields
+        
+        ip_address = @connection.clientAddress
+        addPost(tid, comment, image, ip_address)
 
     submitThread: (title, comment, image) ->
-        ip_address = @connection.clientAddress
+        
+        #-- title
+        # HAS CORRECT TYPE
+        check title, String
+        # NOT EMPTY
         title = title.trim()
+        check title, Match.Where (x) ->
+            x.length > 0
+        # NOT TOO LONG
+        check comment, Match.Where (x) ->
+            x.length < 64
+        
+        #-- comment
+        # HAS CORRECT TYPE
+        check comment, String
+        # NOT EMPTY
         comment = comment.trim()
-        if title.length > 0 and comment.length > 0
-            addThread(title, comment, image, ip_address)
-        else
-            throw new Meteor.Error 'incomplete-form'
+        check comment, Match.Where (x) ->
+            x.length > 0
+        # NOT TOO LONG
+        check comment, Match.Where (x) ->
+            x.length < 65536
+        
+        #-- image
+        # HAS CORRECT TYPE
+        if image?
+            check image, {
+                id, String
+                name, String
+                size, Number
+                height, Number
+                width, Number
+            }
+        # TODO: validate all fields
+        
+        ip_address = @connection.clientAddress
+        addThread(title, comment, image, ip_address)
 
 addThread = (title, comment, image, ip_address) ->
     timestamp = +moment()

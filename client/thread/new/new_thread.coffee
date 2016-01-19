@@ -48,7 +48,7 @@ Template.new_thread.events
                 console.log fr.error
                 validate()
         else
-            postThread(title, firstPost, '')
+            postThread(title, firstPost, null)
             
 postThread = (title, firstPost, image_id) ->
     Meteor.call 'submitThread', title, firstPost, image_id, (error, result) ->
@@ -61,11 +61,9 @@ postThread = (title, firstPost, image_id) ->
             validate()
             
 validate = () ->
-    console.log 'validating...'
     wroteTitle = document.getElementById('title').value.length > 0
     wrotePost = document.getElementById('firstPost').value.length > 0
     choseFile = document.getElementById('file').files.length > 0
-    console.log 'title:', wroteTitle, 'post:', wrotePost, 'file:', choseFile
     if wroteTitle && (wrotePost || choseFile)
         setThreadSubmitBtn 'ready'
     else
