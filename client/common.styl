@@ -15,16 +15,10 @@ html
         button
             font-family inherit
             font-size inherit
-            color inherit
-            background inherit
-            border inherit
+            border 0
                 
         form
             width 100%
-            
-            input[type='text']
-            textarea
-                border 1px solid hsla(0,0,0,0.25)
                 
             .autosize
                 position relative
@@ -101,7 +95,6 @@ html
             background hsla(0,0,0,0.1)
             color hsla(0,0,0,0.6)
             font 600 1.2rem 'Source Code Pro', monospace
-            // border-left 4px solid #f33
             
             &:hover
             &:focus
@@ -109,13 +102,7 @@ html
                 color white
                 
             &:disabled
-                border-color inherit
-                
-                &:hover
-                &:focus
-                    background @background
-                    color @color
-                    text-decoration line-through
+                visibility hidden
             
             &.bg
                 border 0
