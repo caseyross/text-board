@@ -14,9 +14,11 @@ Template.thread.events
         saveSelection()
     'click .reply': (event) ->
         # Show post input if it's not already visible
-        bottom = document.getElementById('newPost').getBoundingClientRect().bottom
-        if bottom > window.innerHeight
+        newPostTop = document.getElementById('newPost').getBoundingClientRect().top
+        if newPostTop > window.innerHeight
             toggleFloatPanel on
+        else
+            window.scrollTo(window.scrollX, document.body.scrollHeight)
         # Insert markup for a reply
         # Save reply content and cursor position in session storage
         backlink = '>>'

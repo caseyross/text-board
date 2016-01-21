@@ -10,7 +10,9 @@ Template.new_post.events
         textarea = event.target
         comment = textarea.value
         document.getElementById('commentMirror').innerHTML = comment
-        window.scrollTo(window.scrollX, document.body.scrollHeight) # TODO: don't scroll when floating
+        # Scroll to bottom to compensate for expanding textarea
+        if document.body.scrollHeight - window.scrollY - window.innerHeight < 64
+            window.scrollTo(window.scrollX, document.body.scrollHeight)
         validate()
         Session.set 'comment', comment
         Session.set 'comment_pos', textarea.selectionStart
