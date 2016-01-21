@@ -2,6 +2,8 @@ form
     .post#newThread
         .body
             input#title(type='text' name='title' placeholder='Title' autofocus)
+            #countRow
+                #charCount !{prettyCharCount}
             textarea#firstPost(name='firstPost' rows='8' placeholder='Comment')
             .row
                 .file

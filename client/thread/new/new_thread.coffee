@@ -1,5 +1,15 @@
+Session.setDefault 'title_char_count', 0
+
+Template.new_thread.helpers
+    prettyCharCount: ->
+        count = Session.get 'title_char_count'
+        if count > 127
+            return "<strong class='error'>" + count + '</strong>' + '/127'
+        return null
+
 Template.new_thread.events
     'input #title': (event) ->
+        Session.set 'title_char_count', document.getElementById('title').value.length
         validate()
     'input #firstPost': (event) ->
         validate()
@@ -59,12 +69,13 @@ postThread = (title, firstPost, image_id) ->
             console.log error
             # TODO: tell users about error
             validate()
-            
+
 validate = () ->
     wroteTitle = document.getElementById('title').value.length > 0
+    titleNotTooLong = document.getElementById('title').value.length < 128
     wrotePost = document.getElementById('firstPost').value.length > 0
     choseFile = document.getElementById('file').files.length > 0
-    if wroteTitle && (wrotePost || choseFile)
+    if wroteTitle && titleNotTooLong && (wrotePost || choseFile)
         setThreadSubmitBtn 'ready'
     else
         setThreadSubmitBtn 'locked'
