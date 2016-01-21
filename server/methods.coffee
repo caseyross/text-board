@@ -24,11 +24,11 @@ Meteor.methods
         # HAS CORRECT TYPE
         if image?
             check image, {
-                id, String
-                name, String
-                size, Number
-                height, Number
-                width, Number
+                id: String
+                name: String
+                size: Number
+                height: Number
+                width: Number
             }
         # TODO: validate all fields
         
@@ -45,8 +45,8 @@ Meteor.methods
         check title, Match.Where (x) ->
             x.length > 0
         # NOT TOO LONG
-        check comment, Match.Where (x) ->
-            x.length < 64
+        check title, Match.Where (x) ->
+            x.length < 128
         
         #-- comment
         # HAS CORRECT TYPE
@@ -63,11 +63,11 @@ Meteor.methods
         # HAS CORRECT TYPE
         if image?
             check image, {
-                id, String
-                name, String
-                size, Number
-                height, Number
-                width, Number
+                id: String
+                name: String
+                size: Number
+                height: Number
+                width: Number
             }
         # TODO: validate all fields
         

@@ -1,10 +1,8 @@
-.post
-    .body
-        form
-            label(for='title') Title
-            input#title(type='text' name='title' placeholder='Describe the thread...' autofocus)
-            label(for='firstPost') First post
-            textarea#firstPost(name='firstPost' rows='8' placeholder='... and start the conversation.')
+form
+    .post#newThread
+        .body
+            input#title(type='text' name='title' placeholder='Title' autofocus)
+            textarea#firstPost(name='firstPost' rows='8' placeholder='Comment')
             .row
                 .file
                     label.btn#L_file(for='file') File...
