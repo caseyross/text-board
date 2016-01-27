@@ -8,6 +8,8 @@ Template.new_thread.helpers
         return null
 
 Template.new_thread.events
+    'click .close-btn': (event) ->
+        FlowRouter.go '/'
     'input #title': (event) ->
         Session.set 'title_char_count', document.getElementById('title').value.length
         validate()
